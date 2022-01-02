@@ -1,4 +1,6 @@
 // pages/products/products.js
+// https://github.com/vanclimber/MiniProgram-diancan/blob/master/app.wxss
+// https://github.com/vanclimber/MiniProgram-diancan
 import {
   debounce
 } from '../../utils/util.js'
