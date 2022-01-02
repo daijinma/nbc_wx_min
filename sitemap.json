@@ -1,0 +1,7 @@
+{
+  "desc": "纳百川观赏鱼名录",
+  "rules": [{
+  "action": "allow",
+  "page": "*"
+  }]
+}
