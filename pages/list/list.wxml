@@ -1,0 +1,103 @@
+<wxs src="./list.wxs" module="utils"></wxs>
+
+<view class="main-container">
+  <view class="bg-linear-gradient"></view>
+  <view class="desc">
+    说明：只接受签收后两小时内开箱视频报损，运费包装费不报损，三天以内发货，
+    鱼有白点可发送清晰视频报损，飞碟虫不报损，客户可自行处理一下，过淡水三到五分钟即可
+  </view>
+  <!-- 右侧商品 -->
+  <view class="table">
+    <view class="th">
+      <!-- 商品类别 -->
+      <view class="td width_title">名称</view>
+      <view class="td else">尺寸/品相</view>
+      <view class="td else">产地</view>
+      <view class="td else">价格</view>
+      <view class="td else">库存</view>
+    </view>
+    <view class="tr" wx:for="{{renderList}}" wx:key="index" wx:for-item="item" data-item="{{item}}" bindtap="showDetailPannel">
+      <!-- 商品类别 -->
+      <view class="td width_title">{{item.fish_name}}</view>
+      <view class="td else">
+        <view class="tr2" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" bindtap="showDetailPannel">
+          <!-- 商品类别 -->
+          <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
+          <view class="td2">{{detail.supplier || '--'}}</view>
+          <view class="td2">{{detail.price}}</view>
+          <view class="td2">{{detail.num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部购物车 -->
+<view class="footer {{totalNumber==0?'':'footer-selected'}}">
+  <view class="bottom-icon" bindtap="controlCart">
+    <icon class="iconfont icon-cart"></icon>
+    <span class="goodsNumber" wx:if="{{totalNumber>0}}">{{totalNumber}}</span>
+    <view class="bottom-price">￥ {{totalPrice}}</view>
+  </view>
+  <view bindtap="goToConfirm">{{totalPrice==0?"空的意向单":"复制信息"}}</view>
+</view>
+<!-- 弹出栏 -->
+<!-- 蒙层 -->
+<view class="cart-background" wx:if="{{showCartDetail}}" bindtap="hideCart"></view>
+<view class="cart-detail" wx:if="{{showCartDetail}}">
+  <view class="cart-title">
+    <icon class="iconfont icon-cart "> 已选意向单<text class="cart-title-tips">请确认后发送给商家</text></icon>
+    <icon class="iconfont icon-trashcan" bindtap="clearCart"> 清空</icon>
+  </view>
+
+  <view class="cart-content">
+    <scroll-view scroll-y class="cart-scroll">
+      <view class="cart-item" wx:for="{{shoppingCart}}" wx:key="id">
+        <view>{{item.fish_name}}</view>
+        <view class="amount-control">
+          <view>
+            <text>{{item.size[item.fishDetailSizeIndex]}}</text>
+            <text> / </text>
+            <text>{{item.appearance[item.fishDetailAppearanceIndex]}}</text>
+          </view>
+          <view class="amount-price">￥{{utils.add(item.price[item.fishDetailSizeIndex], item.appearance_price[item.fishDetailAppearanceIndex]) * item.number}} </view>
+          <icon class="iconfont icon-subtract count-icon" bindtap="goodsNumInCart" data-item="{{item}}" data-num="{{-1}}"></icon>
+          <view class="content-num">{{item.number}}</view>
+          <icon class="iconfont icon-add count-icon" bindtap="goodsNumInCart" data-item="{{item}}" data-num="{{1}}"></icon>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+</view>
+
+
+<!-- 鱼详情蒙层 -->
+<view class="fish-background" wx:if="{{fishDetail.fish_idid}}" bindtap="hideDetail"></view>
+<view class="fish-detail" wx:if="{{fishDetail.fish_id}}">
+  <view class="fish-img">
+    <image mode="aspectFill" class="item-image" src="{{fishDetail.fish_image_url}}"></image>
+  </view>
+  <view class="fish-title">
+
+    <view class="fish-price">{{utils.add(fishDetail.price[fishDetail.fishDetailSizeIndex], fishDetail.appearance_price[fishDetail.fishDetailAppearanceIndex])}}<text>元</text></view>
+    <view class="fish-name">{{fishDetail.fish_name}}</view>
+  </view>
+  <view class="fish-content">
+    <view class="fish-item">
+      <view class="item-size" wx:if="{{fishDetail.size.length}}">
+        规格：
+        <text wx:for="{{fishDetail.size}}" wx:key="index" data-index="{{index}}" bindtap="changeDetailSize" class="item-size-item  {{fishDetail.fishDetailSizeIndex==index?'selected':''}}">{{item}}</text>
+      </view>
+      <view class="item-size" wx:if="{{fishDetail.appearance.length}}">
+        品相：
+        <text wx:for="{{fishDetail.appearance}}" wx:key="index" data-index="{{index}}" bindtap="changeDetailAppearance" class="item-size-item  {{fishDetail.fishDetailAppearanceIndex==index?'selected':''}}">{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="counts-control">
+    <view class="icon-btn icon-add" bindtap="controlGoodsNum">加入意向单</view>
+    <view class="fish-tips">意向单内可修改数量</view>
+  </view>
+
+
+</view>

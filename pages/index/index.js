@@ -14,12 +14,12 @@ Page({
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
-      url: '../products/products'
+      url: '../list/list'
     })
   },
   onLoad() {
     wx.redirectTo({
-      url: '../products/products'
+      url: '../list/list'
     })
     if (wx.getUserProfile) {
       this.setData({
