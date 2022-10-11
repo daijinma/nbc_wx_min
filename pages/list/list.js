@@ -2,6 +2,9 @@
 // https://github.com/vanclimber/MiniProgram-diancan/blob/master/app.wxss
 // https://github.com/vanclimber/MiniProgram-diancan
 
+const mainUrl = 'http://localhost:3000/api/min'
+// const mainUrl = 'https://nbc.daijinma.cn/api/min'
+
 Page({
 
   /**
@@ -11,6 +14,8 @@ Page({
     goodsList: [], //存放商品列表
     typeList: [],
     renderList: [],
+    renderListPrice: [],
+    renderListCategory: [],
     originList: [],
     shoppingCart: [],
     titleTopList: [],
@@ -20,6 +25,8 @@ Page({
     totalNumber: 0,
     rpxToPx: 2,
     menuIndex: 0,
+    desc: '',
+    current: 1,
   },
 
   /**
@@ -27,6 +34,7 @@ Page({
    */
   onLoad: function (options) {
     this.getFish()
+    this.getDesc()
 
     // rpx和px进行转换
     wx.getSystemInfo({
@@ -38,22 +46,50 @@ Page({
     });
 
   },
+  changeCurrent(e) {
+    let current = e.currentTarget.dataset.current;
+
+    this.setData({
+      current
+    })
+  },
+  getDesc() {
+    return wx.request({
+      url: mainUrl + '/config/desc',
+      method: 'GET',
+      success: ({
+        data: {
+          desc
+        }
+      }) => {
+        this.setData({
+          desc
+        })
+      },
+      fail: function () {
+        this.setData({
+          desc: '只接受签收后两小时内开箱视频报损，运费包装费不报损，三天以内发货，鱼有白点可发送清晰视频报损，飞碟虫不报损，客户可自行处理一下，过淡水三到五分钟即可'
+        })
+      }
+
+    })
+  },
 
   getFish() {
     wx.showLoading({
       title: '正在努力加载中',
     })
     return wx.request({
-      url: 'http://localhost:3000/api/min/products/v2/all',
+      url: mainUrl + '/products/v2/all',
       method: 'GET',
       success: ({
         data
       }) => {
         wx.hideLoading();
-        
-        const list =  [];
-        const list_id =  [];
-        data.list.forEach(item=>{
+
+        const list = [];
+        const list_id = [];
+        data.list.forEach(item => {
           const id = `${item.fish_id}_${item.num}_${item.price}`
           item._id = id;
           const {
@@ -65,27 +101,64 @@ Page({
             current_appearance
           } = item;
           const index = list_id.indexOf(fish_id)
-          if(index>=0){
+          if (index >= 0) {
             list[index].size.push(current_size)
             list[index].appearance.push(current_appearance)
             list[index].detail.push(item)
-          }else{
+          } else {
             list_id.push(fish_id)
             list.push({
               fish_id,
               fish_name,
               category,
               fish_image_url,
-              size:[current_size],
+              size: [current_size],
               appearance: [current_appearance],
-              detail:[item]
+              detail: [item]
             })
           }
         });
 
-        console.log(list)
+        // 默认排序，内部按价格排序
+        list.forEach(item => {
+          item.detail = item.detail.sort((a, b) => {
+            return a.price - b.price
+          })
+        })
+
+        // 整体按价格排序，比较首个子项 价格
+        const listPrice = [...list].sort((a, b) => {
+          return a?.detail[0]?.price - b?.detail[0]?.price;
+        })
+
+        // 按分类排序
+        const listCategory = [];
+        const listCategoryName = [];
+        list.forEach(item => {
+          const category = item.category;
+          const index = listCategoryName.indexOf(category)
+          if (index > -1) {
+            listCategory[index].list.push(item)
+          } else {
+            listCategoryName.push(category)
+            listCategory.push({
+              key: category,
+              list: [item]
+            })
+          }
+        })
+
+
         this.setData({
-          renderList: list,
+          renderList: [{
+            key: '商品列表',
+            list: list,
+          }],
+          renderListPrice: [{
+            key: '商品列表',
+            list: listPrice,
+          }],
+          renderListCategory: listCategory,
           originList: data.list
         })
       },
@@ -154,12 +227,9 @@ Page({
     this.setData({
       shoppingCart: shoppingCartCopy,
       fishDetail: {},
-      totalPrice: this.data.totalPrice + 1 * (Number(fishDetail.price[fishDetail.fishDetailSizeIndex] || 0) + Number(fishDetail.appearance_price[fishDetail.fishDetailAppearanceIndex] || 0)),
+      totalPrice: this.data.totalPrice + 1 * (Number(fishDetail.price[fishDetail.fishDetailSizeIndex] || 0)),
       totalNumber: this.data.totalNumber + 1
     })
-
-
-
 
   },
 
@@ -222,7 +292,7 @@ Page({
 
     this.setData({
       totalNumber: this.data.totalNumber + num,
-      totalPrice: this.data.totalPrice + num * (Number(item.price[item.fishDetailSizeIndex] || 0) + Number(item.appearance_price[item.fishDetailAppearanceIndex] || 0)),
+      totalPrice: this.data.totalPrice + num * (Number(item.price[item.fishDetailSizeIndex] || 0)),
       shoppingCart: list,
       goodsList: goodsData,
       showCartDetail: list.length === 0 ? false : true,
@@ -250,16 +320,16 @@ Page({
       var str = '';
 
       shoppingCart.forEach(item => {
-        var str_1 = `${item.name}
-        规格：${item.size[item.fishDetailSizeIndex] || "--"} 
-        品相：${item.appearance[item.fishDetailAppearanceIndex] || "--"} 
-        单价：${(Number(item.price[item.fishDetailSizeIndex] || 0) +  Number(item.appearance_price[item.fishDetailAppearanceIndex] || 0))}
-        数量：${item.number || 1}
-` 
+        var str_1 = `
+${item.fish_name}/${item.supplier||''}
+  规/品：${item.size[item.fishDetailSizeIndex] || ""} / ${item.appearance[item.fishDetailAppearanceIndex] || ""} 
+  价格：${(Number(item.price[item.fishDetailSizeIndex] || 0))} * ${item.number || 1}
+        `
         str += str_1;
       })
       str += `
 总价：${totalPrice}元`
+
 
       wx.setClipboardData({
         data: str,
@@ -270,9 +340,13 @@ Page({
   // 展示详情半页框
   showDetailPannel: function (e) {
     let item = e.currentTarget.dataset.item;
-    console.log(item)
-    item.fishDetailSizeIndex = item.fishDetailSizeIndex || 0;
-    item.fishDetailAppearanceIndex = item.fishDetailAppearanceIndex || 0;
+    let index = e.currentTarget.dataset.index;
+
+    item.fishDetailSizeIndex = index || item.fishDetailSizeIndex || 0;
+    item.fishDetailAppearanceIndex = index || item.fishDetailAppearanceIndex || 0;
+    item.price = item.detail.map(a => a.price).filter(b => !!b)
+    item.size = item.detail.map(a => a.current_size).filter(b => !!b)
+    item.appearance = item.detail.map(a => a.appearance).filter(b => !!b)
     this.setData({
       fishDetail: item
     })

@@ -2,33 +2,40 @@
 
 <view class="main-container">
   <view class="bg-linear-gradient"></view>
-  <view class="desc">
-    说明：只接受签收后两小时内开箱视频报损，运费包装费不报损，三天以内发货，
-    鱼有白点可发送清晰视频报损，飞碟虫不报损，客户可自行处理一下，过淡水三到五分钟即可
-  </view>
+  <view class="desc">{{desc}}</view>
   <!-- 右侧商品 -->
+
   <view class="table">
-    <view class="th">
-      <!-- 商品类别 -->
-      <view class="td width_title">名称</view>
-      <view class="td else">尺寸/品相</view>
-      <view class="td else">产地</view>
-      <view class="td else">价格</view>
-      <view class="td else">库存</view>
+    <view class="tabs">
+      <view class="{{current==0 ? 'item current':'item'}}" data-current="0" bindtap="changeCurrent">默认排序</view>
+      <view class="{{current==1 ? 'item current':'item'}}" data-current="1" bindtap="changeCurrent">分类排序</view>
+      <view class="{{current==2 ? 'item current':'item'}}" data-current="2" bindtap="changeCurrent">价格排序</view>
     </view>
-    <view class="tr" wx:for="{{renderList}}" wx:key="index" wx:for-item="item" data-item="{{item}}" bindtap="showDetailPannel">
-      <!-- 商品类别 -->
-      <view class="td width_title">{{item.fish_name}}</view>
-      <view class="td else">
-        <view class="tr2" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" bindtap="showDetailPannel">
-          <!-- 商品类别 -->
-          <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
-          <view class="td2">{{detail.supplier || '--'}}</view>
-          <view class="td2">{{detail.price}}</view>
-          <view class="td2">{{detail.num}}</view>
+
+    <block wx:for="{{current==0?renderList:current==1?renderListCategory:renderListPrice}}" wx:key="index" wx:for-item="item1">
+      <view class="header-tip">{{item1.key}}</view>
+      <view class="th">
+        <!-- 商品类别 -->
+        <view class="td width_title">名称</view>
+        <view class="td else">尺寸/品相</view>
+        <view class="td else">产地</view>
+        <view class="td else">价格</view>
+        <view class="td else">库存</view>
+      </view>
+      <view class="tr" wx:for="{{item1.list}}" wx:key="index" wx:for-item="item" data-item="{{item}}" catchtap="showDetailPannel">
+        <!-- 商品类别 -->
+        <view class="td width_title">{{item.fish_name}}</view>
+        <view class="td else">
+          <view class="tr2" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" data-index="{{idx}}" catchtap="showDetailPannel">
+            <!-- 商品类别 -->
+            <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
+            <view class="td2">{{detail.supplier || '--'}}</view>
+            <view class="td2">{{detail.price}}</view>
+            <view class="td2">{{detail.num}}</view>
+          </view>
         </view>
       </view>
-    </view>
+    </block>
   </view>
 </view>
 <!-- 底部购物车 -->
@@ -72,14 +79,14 @@
 
 
 <!-- 鱼详情蒙层 -->
-<view class="fish-background" wx:if="{{fishDetail.fish_idid}}" bindtap="hideDetail"></view>
+<view class="fish-background" wx:if="{{fishDetail.fish_id}}" bindtap="hideDetail"></view>
 <view class="fish-detail" wx:if="{{fishDetail.fish_id}}">
   <view class="fish-img">
     <image mode="aspectFill" class="item-image" src="{{fishDetail.fish_image_url}}"></image>
   </view>
   <view class="fish-title">
 
-    <view class="fish-price">{{utils.add(fishDetail.price[fishDetail.fishDetailSizeIndex], fishDetail.appearance_price[fishDetail.fishDetailAppearanceIndex])}}<text>元</text></view>
+    <view class="fish-price">{{utils.add(fishDetail.price[fishDetail.fishDetailSizeIndex])}}<text>元</text></view>
     <view class="fish-name">{{fishDetail.fish_name}}</view>
   </view>
   <view class="fish-content">
