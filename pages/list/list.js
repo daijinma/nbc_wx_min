@@ -2,8 +2,8 @@
 // https://github.com/vanclimber/MiniProgram-diancan/blob/master/app.wxss
 // https://github.com/vanclimber/MiniProgram-diancan
 
-const mainUrl = 'http://localhost:3000/api/min'
-// const mainUrl = 'https://nbc.daijinma.cn/api/min'
+// const mainUrl = 'http://localhost:3000/api/min'
+const mainUrl = 'https://nbc.daijinma.cn/api/min'
 
 Page({
 
