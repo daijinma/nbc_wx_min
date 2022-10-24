@@ -7,6 +7,13 @@
           "pathName": "pages/products/products",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "openid",
+          "pathName": "pages/admin/admin",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
