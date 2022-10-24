@@ -2,8 +2,8 @@
 // https://github.com/vanclimber/MiniProgram-diancan/blob/master/app.wxss
 // https://github.com/vanclimber/MiniProgram-diancan
 
-const mainUrl = 'http://localhost:3000/api/min'
-// const mainUrl = 'https://nbc.daijinma.cn/api/min'
+// const mainUrl = 'http://localhost:3000/api/min'
+const mainUrl = 'https://nbc.daijinma.cn/api/min'
 
 Page({
 
@@ -281,7 +281,10 @@ Page({
     let list = this.data.shoppingCart;
     let goodsData = this.data.goodsList;
     for (let index in list) {
-      if (item.id === list[index].id) {
+      const current = list[index];
+      const _id1 = `${item.fish_id}_${item.fishDetailAppearanceIndex}_${item.fishDetailSizeIndex}`
+      const _id2 = `${current.fish_id}_${current.fishDetailAppearanceIndex}_${current.fishDetailSizeIndex}`
+      if (_id1 === _id2) {
         list[index].number += num;
         if (list[index].number === 0) {
           list.splice(index, 1);
@@ -318,17 +321,18 @@ Page({
         wx.hideToast()
       }, 1000)
       var str = '';
-
+      let count = 0;
       shoppingCart.forEach(item => {
-        var str_1 = `
-${item.fish_name}/${item.supplier||''}
-  规/品：${item.size[item.fishDetailSizeIndex] || ""} / ${item.appearance[item.fishDetailAppearanceIndex] || ""} 
-  价格：${(Number(item.price[item.fishDetailSizeIndex] || 0))} * ${item.number || 1}
-        `
+        var str_1 = `${item.fish_name}  ${item.size[item.fishDetailSizeIndex] || ""} / ${item.appearance[item.fishDetailAppearanceIndex] || ""}  价格：${(Number(item.price[item.fishDetailSizeIndex] || 0))} * ${item.number || 1}
+`
         str += str_1;
+        count += item.number || 1
       })
       str += `
-总价：${totalPrice}元`
+总价：${totalPrice}元
+
+其他可能费用：包装费${count>3?'25':'15'},邮寄费用20起
+`
 
 
       wx.setClipboardData({
