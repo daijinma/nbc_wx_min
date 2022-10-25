@@ -377,4 +377,8 @@ Page({
       fishDetail: detail
     })
   },
+  onShareAppMessage() {
+
+  },
+  onShareTimeline() {}
 })
