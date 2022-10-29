@@ -421,6 +421,22 @@
   align-items: center;
   background: #fff;
 }
+.tr2.discount .td2{
+  color: rgb(230, 59, 7);
+  display: flex;
+  align-items: flex-end;
+}
+.tr2.discount .td2 .old_price{
+  font-size: 8px;
+  text-decoration: line-through;
+}
+/* .tr2.discount .td2 .old_price::after{
+  content: "折扣";
+  font-weight: 800;
+  border: 1px solid rgb(230, 59, 7);
+  border-radius: 3px;
+  padding: 2px;
+} */
 .td2:last-child {
   border-right: none;    /* 单元格右线框 */
 }
