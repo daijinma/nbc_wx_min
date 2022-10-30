@@ -90,14 +90,14 @@ Page({
         const list = [];
         const list_id = [];
         const discount_list = data.list.map(item => {
-          if(item.discount){
+          if (item.discount) {
             return {
               ...item,
               "category": "特价区",
             }
           }
           return null;
-        }).filter(i=>!!i)
+        }).filter(i => !!i)
 
         data.list.unshift(...discount_list);
 
@@ -336,15 +336,18 @@ Page({
       var str = '';
       let count = 0;
       shoppingCart.forEach(item => {
-        var str_1 = `${item.fish_name}  ${item.size[item.fishDetailSizeIndex] || ""} / ${item.appearance[item.fishDetailAppearanceIndex] || ""}  价格：${(Number(item.price[item.fishDetailSizeIndex] || 0))} * ${item.number || 1}
+        const i = item.fishDetailSizeIndex;
+        const num = item.detail[i].num;
+        var str_1 = `${item.fish_name}(${item.size[item.fishDetailSizeIndex] || ""}/${item.appearance[item.fishDetailAppearanceIndex] || ""}) = ${(Number(item.price[item.fishDetailSizeIndex] || 0))}*${item.number || 1} ${num<item.number?'缺货':''}
 `
         str += str_1;
         count += item.number || 1
       })
+      const all = this.elseCount(count)
       str += `
-总价：${totalPrice}元
-
-其他可能费用：包装费${count>3?'25':'15'},邮寄费用20起
+鱼价：${totalPrice}元
+打包快递：${all}元
+总价：${totalPrice + all}元
 `
 
 
@@ -352,6 +355,29 @@ Page({
         data: str,
       })
     }
+  },
+
+  elseCount(num) {
+    let all = 0;
+
+    function count(_num) {
+      if (_num < 4) {
+        all += 35
+      } else if (_num < 9) {
+        all += 45
+      } else if (_num < 16) {
+        all += 60
+      } else if (_num < 26) {
+        all += 100
+      } else {
+        all += 100 // 超过单个箱子+快递，起算第二次快递
+        count(_num - 25)
+      }
+    }
+
+    count(num)
+
+    return all
   },
 
   // 展示详情半页框
@@ -390,9 +416,7 @@ Page({
       fishDetail: detail
     })
   },
-  onShareAppMessage: function (res) {
-  },
-  onShareTimeline: function (res) {
-  }
+  onShareAppMessage: function (res) {},
+  onShareTimeline: function (res) {}
 
 })
