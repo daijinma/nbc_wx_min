@@ -89,6 +89,18 @@ Page({
 
         const list = [];
         const list_id = [];
+        const discount_list = data.list.map(item => {
+          if(item.discount){
+            return {
+              ...item,
+              "category": "特价区",
+            }
+          }
+          return null;
+        }).filter(i=>!!i)
+
+        data.list.unshift(...discount_list);
+
         data.list.forEach(item => {
           const id = `${item.fish_id}_${item.num}_${item.price}`
           item._id = id;
@@ -100,13 +112,14 @@ Page({
             current_size,
             current_appearance
           } = item;
-          const index = list_id.indexOf(fish_id)
+          const __id = `${category}_${fish_id}`
+          const index = list_id.indexOf(__id)
           if (index >= 0) {
             list[index].size.push(current_size)
             list[index].appearance.push(current_appearance)
             list[index].detail.push(item)
           } else {
-            list_id.push(fish_id)
+            list_id.push(__id)
             list.push({
               fish_id,
               fish_name,
@@ -377,8 +390,9 @@ Page({
       fishDetail: detail
     })
   },
-  onShareAppMessage() {
-
+  onShareAppMessage: function (res) {
   },
-  onShareTimeline() {}
+  onShareTimeline: function (res) {
+  }
+
 })

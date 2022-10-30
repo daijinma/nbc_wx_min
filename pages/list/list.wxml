@@ -26,11 +26,13 @@
         <!-- 商品类别 -->
         <view class="td width_title">{{item.fish_name}}</view>
         <view class="td else">
-          <view class="tr2" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" data-index="{{idx}}" catchtap="showDetailPannel">
+          <view class="{{detail.discount?'tr2 discount':'tr2'}}" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" data-index="{{idx}}" catchtap="showDetailPannel">
             <!-- 商品类别 -->
             <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
             <view class="td2">{{detail.supplier || '--'}}</view>
-            <view class="td2">{{detail.price}}</view>
+            <view class="td2">{{detail.price}}
+              <text class="old_price" wx:if="{{detail.discount}}">/{{detail.price-detail.price_increase}}</text>
+            </view>
             <view class="td2">{{detail.num}}</view>
           </view>
         </view>
