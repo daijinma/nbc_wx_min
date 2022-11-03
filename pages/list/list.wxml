@@ -1,9 +1,18 @@
 <wxs src="./list.wxs" module="utils"></wxs>
 
 <view class="main-container">
+  <!-- 管理员头像 -->
+  <view class="admin" wx:if="{{user.is_staff}}" bindtap="jumpUserCenter">
+    <open-data class="item-image" type="userAvatarUrl"></open-data>
+    <view>
+      <open-data type="userNickName"></open-data>
+      <text>个人中心</text>
+    </view>
+  </view>
   <view class="bg-linear-gradient"></view>
   <view class="desc">{{desc}}</view>
   <!-- 右侧商品 -->
+
 
   <view class="table">
     <view class="tabs">
@@ -11,7 +20,6 @@
       <view class="{{current==1 ? 'item current':'item'}}" data-current="1" bindtap="changeCurrent">分类排序</view>
       <view class="{{current==2 ? 'item current':'item'}}" data-current="2" bindtap="changeCurrent">价格排序</view>
     </view>
-
     <block wx:for="{{current==0?renderList:current==1?renderListCategory:renderListPrice}}" wx:key="index" wx:for-item="item1">
       <view class="header-tip">{{item1.key}}</view>
       <view class="th">
@@ -30,7 +38,8 @@
             <!-- 商品类别 -->
             <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
             <view class="td2">{{detail.supplier || '--'}}</view>
-            <view class="td2">{{detail.price}}
+            <view class="td2">
+              {{detail.price}}
               <text class="old_price" wx:if="{{detail.discount}}">/{{detail.price-detail.price_increase}}</text>
             </view>
             <view class="td2">{{detail.num}}</view>
@@ -83,7 +92,7 @@
 <!-- 鱼详情蒙层 -->
 <view class="fish-background" wx:if="{{fishDetail.fish_id}}" bindtap="hideDetail"></view>
 <view class="fish-detail" wx:if="{{fishDetail.fish_id}}">
-  <view class="fish-img">
+  <view class="fish-img" bindlongpress="changePrice">
     <image mode="aspectFill" class="item-image" src="{{fishDetail.fish_image_url}}"></image>
   </view>
   <view class="fish-title">
@@ -93,6 +102,12 @@
   </view>
   <view class="fish-content">
     <view class="fish-item">
+      <view class="item-size" wx:if="{{showChangeMock}}">
+        <input id="changeId" class="input" auto-focus placeholder="改鱼价" />
+        <button type="primary" size="mini" catchtap="changeFishPrice">确定</button>
+      </view>
+
+
       <view class="item-size" wx:if="{{fishDetail.size.length}}">
         规格：
         <text wx:for="{{fishDetail.size}}" wx:key="index" data-index="{{index}}" bindtap="changeDetailSize" class="item-size-item  {{fishDetail.fishDetailSizeIndex==index?'selected':''}}">{{item}}</text>

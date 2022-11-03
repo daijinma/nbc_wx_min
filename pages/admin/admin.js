@@ -67,6 +67,15 @@ Page({
 
   },
 
+  copy(){
+    wx.setClipboardData({
+      data: this.data.resp,
+    })
+
+    // wx.showToast({
+    //   title: '复制成功',
+    // })
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

@@ -1,2 +1,2 @@
 <!--pages/admin/admin.wxml-->
-<view><text>{{resp}}</text></view>
+<view><text bindlongpress="copy">{{resp}}</text></view>

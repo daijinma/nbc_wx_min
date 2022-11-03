@@ -6,19 +6,21 @@
   background-color: #f5f5f5;
 
 }
-.desc{
+
+.desc {
   position: relative;
   z-index: 1;
   padding: 5vw;
   font-size: 12px;
   text-shadow: #fff 1px 1px 5px;
 }
-.bg-linear-gradient{
+
+.bg-linear-gradient {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #f5f5f5 70%);
   height: 400rpx;
   position: absolute;
   top: 0;
-  width:100vw;
+  width: 100vw;
   z-index: 0;
 }
 
@@ -81,9 +83,11 @@
 }
 
 .item-image {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
+  display: block;
   overflow: hidden;
+  border-radius: 50%;
 }
 
 .item-detail {
@@ -207,7 +211,8 @@
   padding: 20rpx;
   border-bottom: 4rpx solid #eee;
 }
-.cart-title-tips{
+
+.cart-title-tips {
   font-size: 24rpx;
   color: #fdad51;
 }
@@ -340,9 +345,11 @@
   margin-top: 20rpx;
   color: #8e8e8e;
 }
+
 .table {
   display: flex;
-  flex-direction: column;     /* 排列形式: 向下 */
+  flex-direction: column;
+  /* 排列形式: 向下 */
   width: 98vw;
   position: relative;
   z-index: 1;
@@ -352,7 +359,7 @@
 
 }
 
-.header-tip{
+.header-tip {
   width: 100px;
   background: #624c91;
   text-align: center;
@@ -367,69 +374,87 @@
   border-top-right-radius: 4px;
 }
 
-.tr, .th{
+.tr,
+.th {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #2717cc;      /* 单元格上线框 */
+  border-bottom: 1px solid #2717cc;
+  /* 单元格上线框 */
 }
 
-.td {  /* 公有的属性 */
-  text-align: left;         /* 文本居中 */
-  border-left: 1px solid #2717cc;     /* 单元格左线框 */
+.td {
+  /* 公有的属性 */
+  text-align: left;
+  /* 文本居中 */
+  border-left: 1px solid #2717cc;
+  /* 单元格左线框 */
 }
 
 .th {
   width: 100%;
-  font-weight: 800;           /* 字体加重 */
-  background-color:#B3CCF4;   /* 背景色 */
+  font-weight: 800;
+  /* 字体加重 */
+  background-color: #B3CCF4;
+  /* 背景色 */
   border-top: 1px solid #2717cc;
 }
+
 .th .td {
-  color:#000;
-  background-color:#c9e4f8;   /* 背景色 */
+  color: #000;
+  background-color: #c9e4f8;
+  /* 背景色 */
 }
 
 .td {
-  background-color:#fff;   /* 背景色 */
+  background-color: #fff;
+  /* 背景色 */
   font-size: 12px;
   text-align: left;
   text-align: center;
 }
+
 .td:last-child {
-  border-right: 1px solid #2717cc;    /* 单元格右线框 */
+  border-right: 1px solid #2717cc;
+  /* 单元格右线框 */
 }
 
-.td.width_title{
+.td.width_title {
   width: 30vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.td.else{
-  flex:1;
+
+.td.else {
+  flex: 1;
 }
-.tr2{
+
+.tr2 {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #2717cc; 
+  border-bottom: 1px solid #2717cc;
 }
-.td2{
-  flex:1;
+
+.td2 {
+  flex: 1;
   border-right: 1px solid #2717cc;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #fff;
 }
-.tr2.discount .td2{
+
+.tr2.discount .td2 {
   color: rgb(230, 59, 7);
   display: flex;
   align-items: flex-end;
 }
-.tr2.discount .td2 .old_price{
+
+.tr2.discount .td2 .old_price {
   font-size: 8px;
   text-decoration: line-through;
 }
+
 /* .tr2.discount .td2 .old_price::after{
   content: "折扣";
   font-weight: 800;
@@ -438,15 +463,18 @@
   padding: 2px;
 } */
 .td2:last-child {
-  border-right: none;    /* 单元格右线框 */
-}
-.tr2:last-child {
-  border-bottom: none;   /* 单元格下线框 */
+  border-right: none;
+  /* 单元格右线框 */
 }
 
-.tabs{
+.tr2:last-child {
+  border-bottom: none;
+  /* 单元格下线框 */
+}
+
+.tabs {
   position: absolute;
-  right:1px;
+  right: 1px;
   top: -7px;
   display: flex;
   border-top-left-radius: 4px;
@@ -454,14 +482,61 @@
   overflow: hidden;
 }
 
-.tabs .item{
+.tabs .item {
   font-size: 12px;
   background: #fff;
-  padding:6px 10px;
+  padding: 6px 10px;
   color: #000;
 }
 
-.tabs .item.current{
+.tabs .item.current {
   background: #2c1348;
   color: #fff;
+}
+
+.admin {
+  z-index: 12;
+  position: absolute;
+  right: 0;
+  width: 30vw;
+  background: white;
+  top: 10px;
+  padding: 5px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+
+.admin image {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.admin view{
+  padding-left: 10px;
+  font-size: 12px;
+} 
+
+.admin view text{
+  display: block;
+  font-size: 10px;
+  color: #333333;
+} 
+
+.mock-wrap{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 50vw;
+  background: white;
+  border-radius: 6px;
+  transform: translate(-50%, -50%);
+}
+.mock-wrap .input{
+  margin: 10px;
 }

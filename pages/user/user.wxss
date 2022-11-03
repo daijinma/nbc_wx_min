@@ -1,0 +1,60 @@
+/* pages/user/user.wxss */
+.page{
+  background: #f3f9f5;
+  height: 100vh;
+  padding: 20px;
+}
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #aaa;
+}
+
+
+.card {
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname{
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+}
+
+.userinfo-position{
+  font-size: 12px;
+}
+
+
+.user-config {
+
+}
+
+.user-config .label{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-config .label label{
+  flex: 1;
+}
+.user-config .label label .tips{
+  font-size: 10px;
+  color: rgb(202, 202, 202);
+}
+.label-text{
+  font-size: 14px;
+}
+

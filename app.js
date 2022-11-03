@@ -1,9 +1,10 @@
 // app.js
 App({
   onLaunch() {
+    const that = this;
     // 登录
     wx.login({
-      success (res) {
+      success(res) {
         if (res.code) {
           //发起网络请求
           wx.request({
@@ -11,8 +12,24 @@ App({
             data: {
               code: res.code
             },
-            success: function({data:res}){
-              console.log(res.data)
+            success: function ({
+              data: {
+                data: res
+              }
+            }) {
+
+              if (res.mobile) {
+                that.globalData.nbcInfo = {
+                  ...res,
+                  ext: null,
+                }
+                that.globalData.config = res.ext
+                that.waitPromise.forEach(p => p(that.globalData))
+
+              } else {
+                that.waitPromise.forEach(p => p(that.globalData))
+              }
+
             }
           })
         } else {
@@ -21,7 +38,18 @@ App({
       }
     })
   },
+  waitPromise: [],
+  getGlobal() {
+    if (this.globalData.nbcInfo) {
+      return Promise.resolve(this.globalData)
+    }
+    return new Promise(resolve => {
+      this.waitPromise.push(resolve)
+    })
+  },
   globalData: {
-    userInfo: null
+    nbcInfo: null,
+    config: null
+
   }
 })

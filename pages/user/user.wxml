@@ -1,0 +1,22 @@
+<!--pages/user/user.wxml-->
+<view class="page">
+  <view class="userinfo card">
+    <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+
+    <view class="userinfo-content">
+      <view class="userinfo-nickname"><open-data type="userNickName"></open-data>({{user.name}})</view>
+      <view class="userinfo-position">{{user.position}}</view>
+    </view>
+  </view>
+  <view class="user-config card">
+    <view class="label">
+      <label class="label-text" for="showMock"><text>显示假价</text><text class="tips">(鱼单内修改后或真实价格)</text></label>
+      <checkbox-group bindchange="changeMock">
+        <checkbox id="showMock" value="changeMock" checked="{{config.mockValue}}"></checkbox>
+      </checkbox-group>
+
+    </view>
+
+
+  </view>
+</view>

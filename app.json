@@ -4,7 +4,9 @@
     "pages/logs/logs",
     "pages/list/list",
     "pages/products/products",
-    "pages/admin/admin"
+    "pages/admin/admin",
+    "pages/web/web",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",

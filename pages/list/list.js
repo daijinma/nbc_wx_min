@@ -4,6 +4,7 @@
 
 // const mainUrl = 'http://localhost:3000/api/min'
 const mainUrl = 'https://nbc.daijinma.cn/api/min'
+const app = getApp()
 
 Page({
 
@@ -27,6 +28,12 @@ Page({
     menuIndex: 0,
     desc: '',
     current: 1,
+    user: {
+      is_staff: false,
+      avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
+    },
+    mockPrices: {},
+    showChangeMock: false,
   },
 
   /**
@@ -35,6 +42,7 @@ Page({
   onLoad: function (options) {
     this.getFish()
     this.getDesc()
+
 
     // rpx和px进行转换
     wx.getSystemInfo({
@@ -45,6 +53,77 @@ Page({
       }
     });
 
+    app.getGlobal()
+      .then(res => {
+        console.log(res)
+        this.setData({
+          user: {
+            is_staff: !!res?.nbcInfo?.mobile,
+            ...res?.nbcInfo
+          },
+        })
+
+        // this.getMockPrice()
+      })
+
+
+  },
+  onShow() {
+    this.getMockPrice()
+  },
+  getMockPrice() {
+
+    app.getGlobal()
+      .then((res) => {
+        if (!res.nbcInfo) return
+        const {
+          nbcInfo: {
+            openid = ''
+          } = {},
+          config: {
+            mockValue = false
+          } = {}
+        } = res
+
+        if (openid && mockValue) {
+          return wx.request({
+            url: mainUrl + '/user/prices',
+            method: 'GET',
+            data: {
+              openid
+            },
+            success: ({
+              data: {
+                data = []
+              }
+            }) => {
+              const values = {}
+              data.forEach(item => {
+                values[item.ckey] = item.cvalue
+              });
+
+              this.setData({
+                mockPrices: values
+              }, () => {
+                this.getFish()
+              })
+            }
+          })
+        } else {
+          this.setData({
+            mockPrices: {}
+          }, () => {
+            this.getFish()
+          })
+        }
+
+      })
+  },
+
+  jumpUserCenter() {
+    wx.navigateTo({
+      url: '../user/user'
+    })
   },
   changeCurrent(e) {
     let current = e.currentTarget.dataset.current;
@@ -87,6 +166,7 @@ Page({
       }) => {
         wx.hideLoading();
 
+        const mockPrices = this.data.mockPrices
         const list = [];
         const list_id = [];
         const discount_list = data.list.map(item => {
@@ -102,7 +182,10 @@ Page({
         data.list.unshift(...discount_list);
 
         data.list.forEach(item => {
-          const id = `${item.fish_id}_${item.num}_${item.price}`
+          const id = `${item.fish_id}_${item.price}`;
+          if (mockPrices[id]) {
+            item.price = mockPrices[id];
+          }
           item._id = id;
           const {
             fish_id,
@@ -415,6 +498,43 @@ Page({
     this.setData({
       fishDetail: detail
     })
+  },
+  changePrice() {
+    this.setData({
+      showChangeMock: !this.data.showChangeMock
+    })
+  },
+
+  changeFishPrice(e) {
+    const fishDetail = this.data.fishDetail;
+    const id = fishDetail.detail[fishDetail.fishDetailSizeIndex]._id
+    const query = wx.createSelectorQuery()
+    const openid = app.globalData.nbcInfo.openid;
+
+    if (!openid) return
+    query.select('#changeId').fields({
+      properties: ['value']
+    }, function (res) {
+      const value = res.value
+      wx.request({
+        url: mainUrl + '/user/savePrice',
+        data: {
+          key: id,
+          value,
+          openid,
+        },
+        success: ({
+          data
+        }) => {
+          console.log(data)
+        },
+        fail: function () {}
+
+      })
+
+    })
+    query.exec()
+
   },
   onShareAppMessage: function (res) {},
   onShareTimeline: function (res) {}
