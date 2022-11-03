@@ -500,6 +500,7 @@ Page({
     })
   },
   changePrice() {
+    if(!this.data.user.is_staff) return
     this.setData({
       showChangeMock: !this.data.showChangeMock
     })
