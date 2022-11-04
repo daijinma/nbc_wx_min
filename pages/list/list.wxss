@@ -1,10 +1,9 @@
 .main-container {
-  height: 90vh;
   overflow: auto;
   background: url(http://nbc-oss-1255447927.cos.ap-beijing.myqcloud.com/static/6a8ce9c8-aebb-465b-8ab1-9bb6bb8ce3c0) center top no-repeat;
   background-size: contain;
   background-color: #f5f5f5;
-
+  padding-bottom: 10vh;
 }
 
 .desc {
@@ -152,6 +151,7 @@
 
 .footer {
   position: fixed;
+  z-index: 2;
   bottom: 0;
   left: 0;
   right: 0;
@@ -301,6 +301,7 @@
   font-size: 28rpx;
   font-weight: 700;
 }
+
 
 .fish-price text {
   font-weight: 400;

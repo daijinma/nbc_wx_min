@@ -4,17 +4,20 @@
     <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
 
     <view class="userinfo-content">
-      <view class="userinfo-nickname"><open-data type="userNickName"></open-data>({{user.name}})</view>
+      <view class="userinfo-nickname">{{user.name}}</view>
       <view class="userinfo-position">{{user.position}}</view>
     </view>
   </view>
   <view class="user-config card">
-    <view class="label">
-      <label class="label-text" for="showMock"><text>显示假价</text><text class="tips">(鱼单内修改后或真实价格)</text></label>
-      <checkbox-group bindchange="changeMock">
-        <checkbox id="showMock" value="changeMock" checked="{{config.mockValue}}"></checkbox>
-      </checkbox-group>
-
+    <view class="label" catchtap="changeMock">
+      <label class="label-text" for="showMock"><text>显示假价</text> <text class="tips">(修改本地显示价格,点击操作)，现在是-></text></label>
+      <view class="right-item">
+        {{config.mockValue?'开启':'关闭'}}
+      </view>
+    </view>
+    <view class="label" catchtap="orders">
+      <label class="label-text" ><text>我的订单</text> <text class="tips">(查询/新增/删除订单)</text></label>
+      <view class="right-item">></view>
     </view>
 
 

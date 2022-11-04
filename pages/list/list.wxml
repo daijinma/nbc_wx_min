@@ -2,10 +2,10 @@
 
 <view class="main-container">
   <!-- 管理员头像 -->
-  <view class="admin" wx:if="{{user.is_staff}}" bindtap="jumpUserCenter">
+  <view class="admin" wx:if="{{user.is_staff}}" bindtap="jumpUserCenter" bindlongpress="hideStaff">
     <open-data class="item-image" type="userAvatarUrl"></open-data>
     <view>
-      <open-data type="userNickName"></open-data>
+      <text>{{user.name}}</text>
       <text>个人中心</text>
     </view>
   </view>
@@ -39,7 +39,7 @@
             <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
             <view class="td2">{{detail.supplier || '--'}}</view>
             <view class="td2">
-              {{detail.price}}
+              <text>{{detail.price}}</text>
               <text class="old_price" wx:if="{{detail.discount}}">/{{detail.price-detail.price_increase}}</text>
             </view>
             <view class="td2">{{detail.num}}</view>
@@ -96,18 +96,16 @@
     <image mode="aspectFill" class="item-image2" src="{{fishDetail.fish_image_url}}"></image>
   </view>
   <view class="fish-title">
-
     <view class="fish-price">{{utils.add(fishDetail.price[fishDetail.fishDetailSizeIndex])}}<text>元</text></view>
     <view class="fish-name">{{fishDetail.fish_name}}</view>
   </view>
   <view class="fish-content">
     <view class="fish-item">
       <view class="item-size" wx:if="{{showChangeMock}}">
-        <input id="changeId" class="input" auto-focus placeholder="改鱼价" />
+        <input id="changeId" class="input" auto-focus placeholder="改鱼价,改为0即可删除" />
         <button type="primary" size="mini" catchtap="changeFishPrice">确定</button>
+        <text>[现在为{{fishDetail.detail[fishDetail.fishDetailSizeIndex].mock?'假':'原'}}价]</text>
       </view>
-
-
       <view class="item-size" wx:if="{{fishDetail.size.length}}">
         规格：
         <text wx:for="{{fishDetail.size}}" wx:key="index" data-index="{{index}}" bindtap="changeDetailSize" class="item-size-item  {{fishDetail.fishDetailSizeIndex==index?'selected':''}}">{{item}}</text>

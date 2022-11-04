@@ -27,19 +27,25 @@ Page({
       })
 
   },
-
-  changeMock(e) {
+  orders(){
+    wx.showToast({
+      icon:"none",
+      title: "订单开发中",
+    })
+  },
+  changeMock() {
     const {
       user: {
         openid
       }
     } = this.data
+    const that = this;
     wx.showLoading({
       title: 'loading...',
     })
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    const checked = e.detail.value.includes('changeMock')
+    console.log(app.globalData.config)
+    const checked = !app.globalData.config.mockValue
 
     wx.request({
       url: 'https://nbc.daijinma.cn/api/min/user/save?openid=' + openid,
@@ -50,7 +56,7 @@ Page({
       data: {
         mockValue: checked
       },
-      success: function ({
+      success({
         data: res
       }) {
         wx.hideLoading({
@@ -58,7 +64,14 @@ Page({
         })
         if (res.result === 'ok') {
           if (app.globalData.config) {
-            app.globalData.config.mockValue = checked
+            app.globalData.config.mockValue = checked;
+            that.setData({
+              config: app.globalData.config
+            })
+
+            wx.showToast({
+              title: checked?"已开启":"已关闭",
+            })
           }
         }
       }

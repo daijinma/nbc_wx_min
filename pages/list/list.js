@@ -66,10 +66,16 @@ Page({
         // this.getMockPrice()
       })
 
-
   },
   onShow() {
     this.getMockPrice()
+  },
+  hideStaff() {
+    this.setData({
+      user: {
+        is_staff: false
+      }
+    })
   },
   getMockPrice() {
 
@@ -184,6 +190,7 @@ Page({
         data.list.forEach(item => {
           const id = `${item.fish_id}_${item.price}`;
           if (mockPrices[id]) {
+            item.mock = true;
             item.price = mockPrices[id];
           }
           item._id = id;
@@ -500,7 +507,7 @@ Page({
     })
   },
   changePrice() {
-    if(!this.data.user.is_staff) return
+    if (!this.data.user.is_staff) return
     this.setData({
       showChangeMock: !this.data.showChangeMock
     })
@@ -528,6 +535,16 @@ Page({
           data
         }) => {
           console.log(data)
+          if (data.result === 'ok' && !data.data) {
+            wx.showToast({
+              title: '保存成功',
+            })
+          } else {
+            wx.showToast({
+              icon: 'error',
+              title: JSON.stringify(data.data),
+            })
+          }
         },
         fail: function () {}
 
