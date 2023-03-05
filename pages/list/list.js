@@ -32,8 +32,6 @@ Page({
       is_staff: false,
       avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
     },
-    mockPrices: {},
-    showChangeMock: false,
   },
 
   /**
@@ -55,7 +53,6 @@ Page({
 
     app.getGlobal()
       .then(res => {
-        console.log(res)
         this.setData({
           user: {
             is_staff: !!res?.nbcInfo?.mobile,
@@ -87,41 +84,15 @@ Page({
             openid = ''
           } = {},
           config: {
-            mockValue = false
+            mockValue = true
           } = {}
         } = res
 
-        if (openid && mockValue) {
-          return wx.request({
-            url: mainUrl + '/user/prices',
-            method: 'GET',
-            data: {
-              openid
-            },
-            success: ({
-              data: {
-                data = []
-              }
-            }) => {
-              const values = {}
-              data.forEach(item => {
-                values[item.ckey] = item.cvalue
-              });
-
-              this.setData({
-                mockPrices: values
-              }, () => {
-                this.getFish()
-              })
-            }
-          })
-        } else {
-          this.setData({
-            mockPrices: {}
-          }, () => {
-            this.getFish()
-          })
-        }
+        this.setData({
+          mockValue: mockValue
+        }, () => {
+          this.getFish()
+        })
 
       })
   },
@@ -172,7 +143,12 @@ Page({
       }) => {
         wx.hideLoading();
 
-        const mockPrices = this.data.mockPrices
+        if (!this.data.user.is_staff || this.data.mockValue) {
+          data.list.forEach((item) => {
+            item.price = Math.round(parseInt(item.price * 1.1) / 5) * 5;
+          })
+        }
+
         const list = [];
         const list_id = [];
         const discount_list = data.list.map(item => {
@@ -189,10 +165,6 @@ Page({
 
         data.list.forEach(item => {
           const id = `${item.fish_id}_${item.price}`;
-          if (mockPrices[id]) {
-            item.mock = true;
-            item.price = mockPrices[id];
-          }
           item._id = id;
           const {
             fish_id,
@@ -438,6 +410,8 @@ Page({
 鱼价：${totalPrice}元
 打包快递：${all}元
 总价：${totalPrice + all}元
+(有大鱼不走小包装，量大运费单独计算)${(this.data.user.is_staff && !this.data.mockValue)?`
+渔场：${totalPrice*0.7}+${all}=${totalPrice*0.7+all}`:''}
 `
 
 
@@ -452,11 +426,11 @@ Page({
 
     function count(_num) {
       if (_num < 4) {
-        all += 35
+        all += 40
       } else if (_num < 9) {
-        all += 45
+        all += 50
       } else if (_num < 16) {
-        all += 60
+        all += 70
       } else if (_num < 26) {
         all += 100
       } else {
@@ -506,54 +480,7 @@ Page({
       fishDetail: detail
     })
   },
-  changePrice() {
-    if (!this.data.user.is_staff) return
-    this.setData({
-      showChangeMock: !this.data.showChangeMock
-    })
-  },
 
-  changeFishPrice(e) {
-    const fishDetail = this.data.fishDetail;
-    const id = fishDetail.detail[fishDetail.fishDetailSizeIndex]._id
-    const query = wx.createSelectorQuery()
-    const openid = app.globalData.nbcInfo.openid;
-
-    if (!openid) return
-    query.select('#changeId').fields({
-      properties: ['value']
-    }, function (res) {
-      const value = res.value
-      wx.request({
-        url: mainUrl + '/user/savePrice',
-        data: {
-          key: id,
-          value,
-          openid,
-        },
-        success: ({
-          data
-        }) => {
-          console.log(data)
-          if (data.result === 'ok' && !data.data) {
-            wx.showToast({
-              title: '保存成功',
-            })
-          } else {
-            wx.showToast({
-              icon: 'error',
-              title: JSON.stringify(data.data),
-            })
-          }
-        },
-        fail: function () {}
-
-      })
-
-    })
-    query.exec()
-
-  },
   onShareAppMessage: function (res) {},
   onShareTimeline: function (res) {}
 

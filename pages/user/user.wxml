@@ -11,7 +11,7 @@
   <view class="user-config card">
     <view class="label" catchtap="changeMock">
       <label class="label-text" for="showMock"><text>显示假价</text> <text class="tips">(修改本地显示价格,点击操作)，现在是-></text></label>
-      <view class="right-item">
+      <view class="right-item red">
         {{config.mockValue?'开启':'关闭'}}
       </view>
     </view>

@@ -14,7 +14,7 @@
   <!-- 右侧商品 -->
 
 
-  <view class="table">
+  <view class="{{user.is_staff?'staff_table table':'table'}}">
     <view class="tabs">
       <view class="{{current==0 ? 'item current':'item'}}" data-current="0" bindtap="changeCurrent">默认排序</view>
       <view class="{{current==1 ? 'item current':'item'}}" data-current="1" bindtap="changeCurrent">分类排序</view>
@@ -28,7 +28,7 @@
         <view class="td else">尺寸/品相</view>
         <view class="td else">产地</view>
         <view class="td else">价格</view>
-        <view class="td else">库存</view>
+        <view class="td else staff_show">库存</view>
       </view>
       <view class="tr" wx:for="{{item1.list}}" wx:key="index" wx:for-item="item" data-item="{{item}}" catchtap="showDetailPannel">
         <!-- 商品类别 -->
@@ -42,7 +42,7 @@
               <text>{{detail.price}}</text>
               <text class="old_price" wx:if="{{detail.discount}}">/{{detail.price-detail.price_increase}}</text>
             </view>
-            <view class="td2">{{detail.num}}</view>
+            <view class="td2 staff_show">{{detail.num}}</view>
           </view>
         </view>
       </view>
@@ -92,7 +92,7 @@
 <!-- 鱼详情蒙层 -->
 <view class="fish-background" wx:if="{{fishDetail.fish_id}}" bindtap="hideDetail"></view>
 <view class="fish-detail" wx:if="{{fishDetail.fish_id}}">
-  <view class="fish-img" bindlongpress="changePrice">
+  <view class="fish-img" >
     <image mode="aspectFill" class="item-image2" src="{{fishDetail.fish_image_url}}"></image>
   </view>
   <view class="fish-title">
@@ -101,11 +101,6 @@
   </view>
   <view class="fish-content">
     <view class="fish-item">
-      <view class="item-size" wx:if="{{showChangeMock}}">
-        <input id="changeId" class="input" auto-focus placeholder="改鱼价,改为0即可删除" />
-        <button type="primary" size="mini" catchtap="changeFishPrice">确定</button>
-        <text>[现在为{{fishDetail.detail[fishDetail.fishDetailSizeIndex].mock?'假':'原'}}价]</text>
-      </view>
       <view class="item-size" wx:if="{{fishDetail.size.length}}">
         规格：
         <text wx:for="{{fishDetail.size}}" wx:key="index" data-index="{{index}}" bindtap="changeDetailSize" class="item-size-item  {{fishDetail.fishDetailSizeIndex==index?'selected':''}}">{{item}}</text>

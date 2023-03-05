@@ -548,3 +548,10 @@
 .mock-wrap .input{
   margin: 10px;
 }
+
+.staff_show{
+  display: none!important;
+}
+.staff_table .staff_show{
+  display: block!important;
+}
