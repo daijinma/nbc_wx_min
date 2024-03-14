@@ -1,0 +1,10 @@
+<!--components/GoldenTag/index.wxml-->
+<view class="hot-swiper-tag {{size}}">
+  <view wx:if="{{text}}" class="swipper swipper2">
+    <view class="item">{{text}}</view>
+  </view>
+  <swiper wx:else class="swipper" autoplay="{{autoplay}}" vertical="true" circular="true" interval="2000">
+    <swiper-item class="item">限时免费领取</swiper-item>
+    <swiper-item class="item">剩余10个名额</swiper-item>
+  </swiper>
+</view>

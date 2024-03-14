@@ -1,0 +1,18 @@
+<!--components/NewsList/index.wxml-->
+<view class="news-list-container">
+  <view class="column column1" id="column1">
+    <!-- 第一列的内容 -->
+    <block wx:for="{{column1Data}}" wx:key="key" wx:for-item="item">
+      <News wx:if="{{item.list_type == 'news'}}" item="{{item}}" class="news-item"></News>
+      <House wx:else="" item="{{item}}" class="news-item"></House>
+    </block>
+  </view>
+  <view class="column" id="column2">
+    <!-- 第二列的内容 -->
+    <block wx:for="{{column2Data}}" wx:key="key" wx:for-item="item">
+      <News wx:if="{{item.list_type == 'news'}}" item="{{item}}" class="news-item"></News>
+      <House wx:else="" item="{{item}}" class="news-item"></House>
+    </block>
+  </view>
+  
+</view>

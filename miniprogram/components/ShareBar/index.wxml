@@ -1,0 +1,32 @@
+<wxs module="filter" src="../ListShared/utils.wxs" ></wxs>
+
+<!--components/ShareBar/index.wxml-->
+<view class="share-bar-container safe-padding">
+  <view class="wrap">
+    <view class="btn-cover">
+      <button class="button" type="primary" bind:tap="goApply">免费领设计方案
+      </button>
+      <GoldenTag class="tag-position" autoplay="true" size="small" />
+    </view>
+
+    <view class="handle-wrap">
+      <view class="collects" data-keys="collects" bind:tap="setHandle">
+        <image class="image" src="{{has_collects?'../../assets/img/collectionv2-active.png':'../../assets/img/collectionv2.png'}}" mode="aspectFit" animation="{{collectsdhdata}}" ></image>
+        <text  class="text" wx:if="{{!filter.includeShortNum(collects) && has_collects}}">{{ filter.stringToNumber(collects)+1 }}</text>
+        <text  class="text" wx:else>{{collects}}</text>
+      </view>
+      <view class="likes" data-keys="likes" bind:tap="setHandle">
+        <image class="image" src="{{has_likes?'../../assets/img/likesv2-active.png':'../../assets/img/likesv2.png'}}" mode="aspectFit"  animation="{{likesdhdata}}" ></image>
+        <text class="text" wx:if="{{!filter.includeShortNum(likes)  && has_likes}}">{{ filter.stringToNumber(likes)+1 }}</text>
+        <text class="text" wx:else>{{likes}}</text>
+      </view>
+      <view class="share">
+        <image class="image" src="../../assets/img/sharev2.png" mode="aspectFit"></image>
+        <text class="text">分享</text>
+      </view>
+    </view>
+
+    <button class="cover-share" open-type='share'>share</button>
+  </view>
+
+</view>

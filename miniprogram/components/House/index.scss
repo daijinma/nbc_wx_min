@@ -1,0 +1,52 @@
+/* components/House/index.wxss */
+.house-item-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 15rpx;
+  overflow: hidden;
+  margin-bottom: 26rpx;
+  $padding: 14rpx;
+  $halfpadding: 7rpx;
+
+  .tags{
+    padding: $padding;
+    padding-bottom: 0;
+    .tag{
+      color: #e96d2c;
+      font-size: 22rpx;
+    }
+  }
+
+  .banner{
+    display: block;
+    width: 100%;
+    height: auto;
+
+    &.shu{
+      height: calc((50vw - 40rpx) * 1.33);
+    }
+    &.heng{
+      height: calc((50vw - 40rpx) * 0.67);
+    }
+
+  }
+
+  .title{
+    padding: $padding;
+    padding-top: $halfpadding;
+    font-size: 24rpx;
+
+    .text{
+      font-family: "PingFangSC-Medium";
+      line-height: 1.5;
+      display: -webkit-box;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp:2; /*设置超出两行进行隐藏*/
+    }
+  }
+}

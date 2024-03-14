@@ -1,0 +1,25 @@
+<!--components/Swipers/index.wxml-->
+<view class="swiper-cover">
+  <view class="banners-loader" wx:if="{{showPreload}}">
+      <image class="loaderimage" wx:for="{{detail.banner}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" data-url="{{item}}" src="{{item}}" mode="aspectFill" style="height:{{swiperHeight}}" bindload="setSwiperHeight" bind:tap="toPreviewImage"></image>
+    </view>
+  <block wx:if="{{ detail.banner.length == 1 }}">
+    <image class="banner" src="{{detail.banner[0]}}" mode="widthFix"></image>
+  </block>
+  <block wx:else>
+    <view class="banner-wrap">
+      <swiper class="banners" style="height:{{swiperHeight=='0'?'120vh':swiperHeight}}" bindchange="changeBanner">
+        <swiper-item wx:for="{{detail.banner}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <block wx:if="{{ imageShow[index] == 'aspectFit' }}">
+            <image class="swiper-img" data-index="{{index}}" data-url="{{item}}" class="banner" src="{{item}}" mode="aspectFit" style="height:{{swiperHeight}}" bindload="setSwiperHeight" bind:tap="toPreviewImage"></image>
+          </block>
+          <block wx:else>
+            <image class="swiper-img" data-index="{{index}}" data-url="{{item}}" class="banner" src="{{item}}" mode="aspectFill" style="height:{{swiperHeight}}" bindload="setSwiperHeight" bind:tap="toPreviewImage"></image>
+          </block>
+
+        </swiper-item>
+      </swiper>
+      <view class="pagiation">{{currentBanner}}/{{detail.banner.length}}</view>
+    </view>
+  </block>
+</view>

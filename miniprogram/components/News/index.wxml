@@ -1,0 +1,12 @@
+<!--components/News/index.wxml-->
+<view class="news-item-container" bind:tap="goNewDetail">
+  <image class="banner {{item.hengshu}}" src="{{item.cover}}" mode="aspectFill"></image>
+  <view class="tags" wx:if="{{item.tags.length}}">
+    <text class="item" wx:for="{{item.tags}}" wx:key="index" wx:for-item="tag">{{tag}}</text>
+  </view>
+  <view class="title">
+    <text class="text">{{item.title}}</text>
+  </view>
+
+  <ListShared key="{{'news_'+item.id}}" likes="{{item.likes || '0'}}" collects="{{item.collects || '0'}}" />
+</view>

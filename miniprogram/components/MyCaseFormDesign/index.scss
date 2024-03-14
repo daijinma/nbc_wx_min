@@ -1,0 +1,75 @@
+/* components/MyCaseForm/index.wxss */
+.my-case-form-big-container{
+  display: block;
+  width: 100vw;
+  position: relative;
+  font-family: 'PingFangSC-Medium';
+  overflow: hidden;
+  background: #f9f6f8;
+  border-top-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+
+
+
+  .title{
+    display: block;
+    width: 417rpx;
+    margin: 51rpx auto;
+  }
+
+  .submit{
+    display: block;
+    width: 100%;
+    height: 100rpx;
+    padding: 0;
+    line-height: 100rpx;
+    font-size: 36rpx;
+    background-color: #e96e2d;
+    margin-top: 50rpx;
+    font-family: 'PingFangSC-Medium';
+  }
+
+  .section{
+    background: #faf7f9;
+    border-radius: 50rpx;
+    padding: 0 30rpx;
+    $height: 100rpx;
+
+    .area{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .item{
+        width: 332rpx;
+        height: 172rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 22rpx;
+        box-shadow: 0rpx 0rpx 10rpx #ccc;
+        margin-bottom: 26rpx;
+        color: #666;
+        font-size: 32rpx;
+      
+        &.select{
+          color: #fff;
+          background: #f7cba4;
+        }
+      }
+    }
+  }
+
+  .tag-cover{
+    position: relative;
+    button{
+      width: 90%;
+    }
+
+    .tag-position{
+      position: absolute;
+      right: 0rpx;
+      top: -20rpx;
+      z-index: 10;
+    }
+  }
+}

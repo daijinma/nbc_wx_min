@@ -1,0 +1,25 @@
+<!--components/EntryFour/index.wxml-->
+<view class="entry-four-container">
+  <view class="item" bind:tap="goApplyDesign">
+    <image class="image" src='../../assets/img/icon-1.png' mode="aspectFill"></image>
+    <text class="text">免费设计</text>
+    <view class="animation-tag" animation="{{dhdata[0]}}">本周精选</view>
+  </view>
+  <view class="item" bind:tap="goHouseList">
+    <image class="image" src='../../assets/img/icon-3.png' mode="aspectFill"></image>
+    <text class="text">设计案例</text>
+  </view>
+  <view class="item " bind:tap="goApplyQuote">
+    <image class="image" src='../../assets/img/icon-2.png' mode="aspectFill"></image>
+    <text class="text">免费报价</text>
+    <view class="animation-tag" animation="{{dhdata[1]}}">仅剩9名</view>
+  </view>
+  <view class="item" bind:tap="goHouseList">
+    <image class="image" src='../../assets/img/icon-4.png' mode="aspectFill"></image>
+    <text class="text">效果图</text>
+  </view>
+  <view class="item" bind:tap="goApplyDesign2">
+    <image class="image" src='../../assets/img/icon-5.png' mode="aspectFill"></image>
+    <text class="text">设计我家</text>
+  </view>
+</view>

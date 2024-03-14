@@ -1,0 +1,88 @@
+/* components/MyCaseForm/index.wxss */
+.my-case-form-container {
+  display: block;
+  width: 100vw;
+  position: relative;
+  height: 460rpx;
+
+  .bg {
+    display: block;
+    width: 100%;
+    height: 460rpx;
+  }
+
+  .section {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    .submit {
+      width: 530rpx;
+      position: absolute;
+      left: 110rpx;
+      top: 325rpx;
+      background: #e96d2d;
+      height: 85rpx;
+      line-height: 85rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'PingFangSC-Rgular';
+      border-radius: 16rpx;
+      font-weight: 400;
+    }
+
+    .city {
+      position: absolute;
+      left: 41rpx;
+      top: 205rpx;
+      background: #fff;
+      border-radius: 5px;
+      width: 295rpx;
+    }
+
+    .area {
+      position: absolute;
+      left: 414rpx;
+      top: 205rpx;
+      height: 80rpx;
+      background: #fff;
+      border-radius: 10rpx;
+      position: relative;
+      width: 293rpx;
+
+      .input {
+        width: 100%;
+        height: 80rpx;
+        // color: #7c7c7c;
+        padding-left: 25rpx;
+        font-size: 26rpx;
+        font-family: 'PingFangSC-Medium';
+      }
+
+      .place-holder {
+        font-size: 26rpx;
+        color: #7c7c7c;
+      }
+
+      .text {
+        position: absolute;
+        right: 10rpx;
+        top: 0;
+        height: 80rpx;
+        line-height: 80rpx;
+        font-size: 24rpx;
+        color: #000;
+        font-family: 'PingFangSC-Medium';
+      }
+    }
+  }
+
+  .tag-position {
+    position: absolute;
+    left: 534rpx;
+    top: 310rpx;
+  }
+}

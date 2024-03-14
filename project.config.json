@@ -1,78 +1,60 @@
 {
-  "description": "纳百川观赏鱼名录",
-  "packOptions": {
-    "ignore": [
-      {
-        "value": ".eslintrc.js",
-        "type": "file"
-      }
-    ],
-    "include": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件",
+    "miniprogramRoot": "miniprogram/",
+    "compileType": "miniprogram",
+    "setting": {
+        "urlCheck": false,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "enableEngineNative": false,
+        "useIsolateContext": true,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "minifyWXML": true,
+        "showES6CompileOption": false,
+        "useCompilerPlugins": [
+            "typescript",
+            "sass"
+        ],
+        "ignoreUploadUnusedFiles": true,
+        "condition": true
     },
-    "enableEngineNative": false,
-    "useIsolateContext": true,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "minifyWXML": true,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.19.4",
-  "appid": "wx4b1ac285aef2dcee",
-  "projectname": "nbc_wx_min",
-  "condition": {
-    "search": {
-      "list": []
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {},
+    "srcMiniprogramRoot": "miniprogram/",
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
     },
-    "conversation": {
-      "list": []
+    "libVersion": "3.0.1",
+    "packOptions": {
+        "ignore": [],
+        "include": []
     },
-    "game": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": []
-    }
-  },
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  }
+    "appid": "wx50eb319794af5406"
 }

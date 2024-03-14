@@ -1,0 +1,43 @@
+/* components/GoldenTag/index.wxss */
+.hot-swiper-tag{
+  padding-left: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 23rpx;
+  border-top-right-radius: 23rpx;
+  border-bottom-right-radius: 23rpx;
+  background: linear-gradient(to right, #f8eaba, #f4d364);
+  font-size: 22rpx;
+  color: #8a562d;
+  font-family: 'PingFangSC-Medium';
+
+  &.small{
+    font-size: 18rpx;
+    padding-left:18rpx;
+    padding-right:4rpx;
+
+    .swipper{
+      width: 120rpx;
+      height: 35rpx; 
+    } 
+  }
+  
+  .swipper{
+    width: 151rpx;
+    height: 44rpx;
+
+    &.swipper2{
+      width: auto;
+      height: 44rpx;
+      padding-right: 20rpx;
+    }
+    .item{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+}

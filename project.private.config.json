@@ -1,26 +1,35 @@
 {
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "鱼列表",
-          "pathName": "pages/products/products",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "openid",
-          "pathName": "pages/admin/admin",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
+    "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "success",
+                    "pathName": "pages/applySuccess/index",
+                    "query": "type=quote",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "test",
+                    "pathName": "pages/index/index",
+                    "query": "click_id=__CLICK_ID__&wechat_openid=__WECHAT_OPEN_ID__&account_id=__ACCOUNT_ID__&callback=__CALLBACK__&click_time=__CLICK_TIME__",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "result",
+                    "pathName": "pages/result/result",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
         }
-      ]
+    },
+    "projectname": "renovationm_minprogram",
+    "setting": {
+        "compileHotReLoad": true,
+        "autoAudits": true
     }
-  },
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "projectname": "nbc_wx_min",
-  "setting": {
-    "compileHotReLoad": true
-  }
 }

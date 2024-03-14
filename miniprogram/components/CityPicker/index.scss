@@ -1,0 +1,59 @@
+/* components/CityPicker/index.wxss */
+.city-picker {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 26rpx;
+  padding: 0 25rpx;
+  // width: calc(100% - 25rpx);
+  position: relative;
+  font-family: "PingFangSC-Medium";
+
+  .city{
+    margin-left: 6rpx;
+  }
+  .arrow-mini{
+    position: absolute;
+    right: 34rpx;
+    top: 34rpx;
+    display: block;
+    width: 16rpx;
+    height: 16rpx;
+  }
+  &.big {
+    $height: 100rpx;
+    height: $height;
+    padding:0;
+    width: auto;
+
+    .item {
+      border: 2rpx solid #ebebeb;
+      background: #f8f8f8;
+      height: $height;
+      padding: 0 30rpx 0 40rpx;
+      border-radius: 16rpx;
+      margin: 20rpx 0;
+
+      .picker {
+        display: flex;
+        justify-content: space-between;
+        line-height: $height;
+        color: #a6a6a6;
+        font-size: 28rpx;
+        font-family: 'PingFangSC-Medium';
+        .label {}
+
+        .text {
+          display: flex;
+          align-items: center;
+          font-family: "PingFangSC-Medium";
+          .arrow {
+            display: inline-block;
+            width: 24rpx;
+            height: 24rpx;
+            margin-left: 4rpx;
+          }
+        }
+      }
+    }
+  }
+}

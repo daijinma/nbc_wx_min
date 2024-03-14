@@ -1,0 +1,80 @@
+/* components/MyCaseForm/index.wxss */
+.my-case-form-big-container{
+  display: block;
+  width: 100vw;
+  position: relative;
+  font-family: 'PingFangSC-Medium';
+
+  .submit{
+    display: block;
+    width: 100%;
+    height: 100rpx;
+    padding: 0;
+    line-height: 100rpx;
+    font-size: 36rpx;
+    background-color: #e96e2d;
+    margin-top: 50rpx;
+    font-family: 'PingFangSC-Medium';
+  }
+
+  .section{
+    margin: 20rpx;
+    background: #fff;
+    border-radius: 30rpx;
+    box-shadow: 0 0 20rpx #c9c9c9;
+    padding: 40rpx;
+    $height: 100rpx;
+
+    .item{
+      border: 2rpx solid #ebebeb;
+      background: #f8f8f8;
+      height: $height;
+      padding: 0 30rpx 0 40rpx;
+      border-radius: 16rpx;
+      margin: 20rpx 0;
+      .picker{
+        display: flex;
+        justify-content: space-between;
+        line-height: $height;
+        color: #a6a6a6;
+        font-size: 28rpx;
+        font-weight: 300;
+        
+        .label{}
+        .text{
+          display: flex;
+          align-items: center;
+          .arrow{
+            display: inline-block;
+            width: 24rpx;
+            height: 24rpx;
+            margin-left: 4rpx;
+          }
+        }
+      }
+    }
+    .area{
+      position: relative;
+      input{
+        line-height: $height;
+        height: $height;
+        font-family: 'PingFangSC-Medium';
+      }
+
+      .place-holder{
+        font-size: 28rpx;
+        color: #a6a6a6;
+      }
+      .ext{
+        position: absolute;
+        right: 30rpx;
+        top: 0;
+        display: flex;
+        height: $height;
+        font-size: 28rpx;
+        color: #a6a6a6;
+        align-items: center;
+      }
+    }
+  }
+}

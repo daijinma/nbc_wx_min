@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "#faf7f8",
+  "usingComponents": {
+    "EntryFour":"../../components/EntryFour",
+    "NewsList":"../../components/NewsList"
+  }
+}

@@ -1,0 +1,11 @@
+<!--components/House/index.wxml-->
+<view class="house-item-container" bind:tap="goHouseDetail">
+  <image class="banner {{item.hengshu || 'shu'}}" src="{{item.cover}}" mode="aspectFill"></image>
+  <view class="tags">
+    <text class="tag">{{tags}}</text>
+  </view>
+  <view class="title">
+    <text class="text">{{item.title}}</text>
+  </view>
+  <ListShared key="{{'house_'+item.id}}" likes="{{item.likes || '0'}}" collects="{{item.collects || '0'}}" />
+</view>

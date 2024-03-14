@@ -1,0 +1,85 @@
+/* components/ShareBar/index.wxss */
+.share-bar-container{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 36rpx 40rpx;
+  padding-bottom:calc(36rpx + constant(safe-area-inset-bottom));
+  padding-bottom:calc(36rpx + env(safe-area-inset-bottom));
+  
+
+  .wrap{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .handle-wrap{
+    display: flex;
+    justify-content: center;
+  }
+  .btn-cover{
+    width: 290rpx;
+    height: 60rpx;
+    position: relative;
+    .tag-position{
+      position: absolute;
+      right: -40rpx;
+      top: -22rpx;
+    }
+  }
+  .button{
+    display: block;
+    margin: 0;
+    background-color: #e96d2d;
+    width: 290rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+    font-family: 'PingFangSC-Rgular';
+    padding: 0;
+  }
+
+  
+
+  .collects,
+  .likes,
+  .share{
+    display: flex;
+    align-items: center;
+    margin-left: 30rpx;
+    justify-content: flex-start;
+    .image{
+      display: block;
+      width: 35rpx;
+      height: 35rpx;
+      margin-right: 6rpx;
+    }
+    .text{
+      color: #999;
+      font-size: 24rpx;
+      margin-bottom: -10rpx;
+      white-space: nowrap;
+    }
+  }
+
+  .share{
+    .image{
+      margin-bottom: -5rpx;
+    }
+  }
+
+  .cover-share{
+    position: absolute;
+    right: 40rpx;
+    top: 16rpx;
+    height: 95rpx;
+    width: 100rpx;
+    padding: 0;
+    background-color: rgba(0,0,0,0);
+    font-size: 0;
+  }
+}

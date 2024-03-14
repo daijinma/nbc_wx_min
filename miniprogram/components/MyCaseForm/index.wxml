@@ -1,0 +1,16 @@
+<!--components/MyCaseForm/index.wxml-->
+<view class="my-case-form-container">
+  <image class="bg" src="https://renovationm-pic.oss-cn-beijing.aliyuncs.com/img/bannerv2.png" mode="aspectFit" />
+  <view class="section">
+    <CitypPicker class="city" bindchange="cityChange" type="small" />
+    <view class="area">
+      <input class="input" placeholder-class="place-holder" placeholder="请输入房屋面积" bindinput="bindKeyInput" value="60" />
+      <text class="text">m²</text>
+    </view>
+
+    <button wx:if="{{btnType == 1}}" class="submit" type="primary" bind:tap="showLogin">免费领取专属设计</button>
+    <button wx:if="{{btnType == 2}}" class="submit" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getrealtimephonenumber">免费领取专属设计</button>
+    <button wx:if="{{btnType == 3}}" class="submit" type="primary" bind:tap="sumitMyInfo">免费领取专属设计</button>
+    <GoldenTag class="tag-position" autoplay="true" />
+  </view>
+</view>

@@ -1,0 +1,56 @@
+/* components/Swipers/index.wxss */
+.swiper-cover{
+  .banners-loader{
+    width: 100vw;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    // opacity: 0;
+    top: 0;
+    
+
+    .loaderimage{
+      display: inline-block;
+      width: 1px;
+      height: 1px;
+    }
+  }
+  .banner {
+    width: 100vw;
+    position: relative;
+  }
+  .banner-wrap{
+    position: relative;
+    .pagiation{
+      position: absolute;
+      z-index: 10;
+      background-color: rgba(0,0,0, 0.3);
+      right: 10rpx;
+      bottom: 10rpx;
+      border-radius: 50rpx;
+      color: #dedede;
+      font-size: 24rpx;
+      padding: 6rpx 20rpx;
+    }
+  }
+  swiper {
+    width: 100vw;
+    overflow: hidden;
+    image{
+      width: 100vw;
+      height: 0;
+    }
+
+    .wx-swiper-dots{
+      margin-bottom: -8rpx;
+    }
+    .wx-swiper-dot {
+      border-radius: 0;
+      height: 4rpx;
+      background-color: rgba(255,255,255,0.7);
+    }
+    .wx-swiper-dot-active {
+      background-color:#e96d2d;
+    }    
+  }
+}

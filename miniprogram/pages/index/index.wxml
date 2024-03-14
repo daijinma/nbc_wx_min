@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="index-container">
+  <EntryFour />
+  <MyCaseForm class="my-form" from="index" />
+  <!-- <text bind:tap="showLogin" >test-showLogin</text> -->
+  <NewsList id="list" />
+  <!-- <LoginDialog /> -->
+</view>

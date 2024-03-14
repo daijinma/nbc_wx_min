@@ -1,0 +1,14 @@
+<wxs module="filter" src="./utils.wxs"></wxs>
+<!--components/ListShared/index.wxml-->
+<view class="handle">
+  <view class="collects">
+    <image class="image" src="{{has_collects?'../../assets/img/collectionv2-active.png':'../../assets/img/collectionv2.png'}}" mode="aspectFit"></image>
+    <text class="text" wx:if="{{filter.includeShortNum(filter.convertNumberToString(collects))}}">{{filter.convertNumberToString(collects)}}</text>
+    <text class="text" wx:else>{{ has_collects? filter.stringToNumber(collects)+1 : filter.stringToNumber(collects) }}</text>
+  </view>
+  <view class="likes">
+    <image class="image" src="{{has_likes?'../../assets/img/likesv2-active.png':'../../assets/img/likesv2.png'}}" mode="aspectFit" bind:tap="setHandle" animation="{{likesdhdata}}" data-keys="likes"></image>
+    <text class="text" wx:if="{{filter.includeShortNum(filter.convertNumberToString(likes))}}">{{filter.convertNumberToString(likes)}}</text>
+    <text class="text" wx:else>{{ has_likes? filter.stringToNumber(likes)+1 : filter.stringToNumber(likes)  }}</text>
+  </view>
+</view>

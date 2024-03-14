@@ -1,0 +1,55 @@
+<!--components/MyCaseForm/index.wxml-->
+<view class="my-case-form-big-container">
+  <view class="section">
+    <CitypPicker type="big" bindchange="cityChange" />
+    <block wx:if="{{key==='design'}}">
+      <picker class="style item" mode="selector" bindchange="styleChange" value="{{style}}" range="{{styleList}}">
+        <view class="picker">
+          <view class="label">
+            风格
+          </view>
+          <view class="text">
+            {{styleList[style]}}
+            <image class="arrow" src='http://renovationm-pic.oss-cn-beijing.aliyuncs.com/upload/32af1f791d44ee2d7e7d21f30755cc32' mode="aspectFit" />
+          </view>
+        </view>
+      </picker>
+    </block>
+    <picker class="style item" mode="selector" bindchange="houseTypeChange" value="{{style}}" range="{{houseTypeList}}">
+      <view class="picker">
+        <view class="label">
+          房型
+        </view>
+        <view class="text">
+          {{houseTypeList[house_type]}}
+          <image class="arrow" src='http://renovationm-pic.oss-cn-beijing.aliyuncs.com/upload/32af1f791d44ee2d7e7d21f30755cc32' mode="aspectFit" />
+        </view>
+      </view>
+    </picker>
+    <block wx:if="{{key==='quote'}}">
+      <view class="area item">
+        <input placeholder-class="place-holder" placeholder="请输入房屋面积" bindinput="bindKeyInput" />
+        <text class="ext">m²</text>
+      </view>
+    </block>
+
+
+
+    <button wx:if="{{btnType == 1}}" class="submit" type="primary" bind:tap="showLogin">
+      {{
+      key==='quote'?"估算报价":"免费领取设计方案"
+      }}
+    </button>
+    <button wx:if="{{btnType == 2}}" class="submit" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getrealtimephonenumber">
+      {{
+      key==='quote'?"估算报价":"免费领取设计方案"
+      }}
+    </button>
+    <button wx:if="{{btnType == 3}}" class="submit" type="primary" bind:tap="sumitMyInfo">
+      {{
+      key==='quote'?"估算报价":"免费领取设计方案"
+      }}
+    </button>
+
+  </view>
+</view>

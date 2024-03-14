@@ -1,0 +1,58 @@
+/* components/News/index.wxss */
+.news-item-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #fff;
+  // border: 2rpx solid #ccc;
+  border-radius: 15rpx;
+  overflow: hidden;
+  margin-bottom: 26rpx;
+  height: auto;
+
+  .banner{
+    display: block;
+    width: 100%;
+    height: auto;
+
+    &.shu{
+      height: calc((50vw - 40rpx) * 1.33);
+    }
+    &.heng{
+      height: calc((50vw - 40rpx) * 0.67);
+    }
+  }
+
+  .tags{
+    padding: 14rpx;
+    padding-bottom: 0;
+    height: 46rpx;
+    overflow: hidden;
+    .item{
+      height: 40rpx;
+      padding: 0 6rpx;
+      display: inline-flex;
+      align-items: center;
+      font-size: 20rpx;
+      background-color: #f2f2f2;
+      color: #868686;
+      border-radius: 5rpx;
+      margin-right: 12rpx;
+      margin-bottom: 10rpx;
+    }
+  }
+  .title{
+    padding: 14rpx;
+    font-size: 24rpx;
+    .text{
+      line-height: 1.7;
+      font-family: 'PingFangSC-Medium';
+      display: -webkit-box;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp:2; /*设置超出两行进行隐藏*/
+    }
+  }
+}

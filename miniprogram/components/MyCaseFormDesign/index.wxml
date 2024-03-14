@@ -1,0 +1,25 @@
+<!--components/MyCaseForm/index.wxml-->
+<view class="my-case-form-big-container ">
+
+  <image class="title" src="https://renovationm-pic.oss-cn-beijing.aliyuncs.com/img/design-title.png" mode="widthFix" />
+
+  <view class="section">
+    <view class="area">
+      <view class="{{selected==index?'item select':'item'}}" wx:for="{{areaList}}" data-value="{{index}}" wx:key="index" bind:tap="changeArea">{{item}}</view>
+    </view>
+
+    <view class="tag-cover">
+      <GoldenTag class="tag-position" autoplay="true" />
+      <button wx:if="{{btnType == 1}}" class="submit" type="primary" bind:tap="showLogin">
+        免费领取设计方案
+      </button>
+      <button wx:if="{{btnType == 2}}" class="submit" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getrealtimephonenumber">
+        免费领取设计方案
+      </button>
+      <button wx:if="{{btnType == 3}}" class="submit" type="primary" bind:tap="sumitMyInfo">
+        免费领取设计方案
+      </button>
+    </view>
+  </view>
+  <view class="safe-padding"></view>
+</view>

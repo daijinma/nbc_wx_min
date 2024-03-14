@@ -1,0 +1,7 @@
+<!--components/HouseMore/index.wxml-->
+<view class="house-more">
+  <view class="title">更多</view>
+  <view class="house-list-container">
+    <House wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index" item="{{item}}" class="house-item {{index%2==0?'odd':'even'}}"></House>
+  </view>
+</view>

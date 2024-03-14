@@ -1,0 +1,29 @@
+/* components/ListShared/index.wxss */
+.handle{
+  border-top: 1rpx solid #eaeaea;
+  display: flex;
+  padding: 14rpx;
+  padding-bottom: 20rpx;
+}
+.collects,
+.likes {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .image {
+    display: block;
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 6rpx;
+  }
+
+  .text {
+    color: #999;
+    font-size: 22rpx;
+    white-space: nowrap;
+    margin-bottom: -5rpx;
+  }
+}

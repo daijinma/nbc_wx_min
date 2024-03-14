@@ -1,0 +1,31 @@
+/* components/NewsList/index.wxss */
+.news-list-container{
+  padding: 0  0 10px 0;
+  width: calc(100vw - 40rpx);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  // .news-item{
+  //   width: 48.5%;
+  // }
+  // .odd{
+  //   display: flex;
+  //   .news-item-container{
+  //     justify-content: start;
+  //   }
+  // }
+
+  .column {
+    flex: 1;
+  }
+  .column1 {
+    margin-right: 20rpx;
+  }
+  
+  .item {
+    margin-bottom: 10px; /* 调整每个项之间的间距 */
+  }
+  
+}

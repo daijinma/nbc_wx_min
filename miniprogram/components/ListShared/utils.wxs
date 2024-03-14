@@ -1,0 +1,20 @@
+module.exports = {
+  stringToNumber: function (str) {
+    // 使用 parseFloat 或 parseInt 函数将字符串转换为数字
+    return parseFloat(str); // 或者使用 parseInt(str) 进行整数转换
+  },
+  convertNumberToString: function(num) {
+    var str = '';
+    num = parseInt(num)
+    if (num >= 10000) {
+      str = (num / 10000).toFixed(1) + 'w';
+    } else {
+      str = num.toString();
+    }
+
+    return str;
+  },
+  includeShortNum: function (str='') {
+    return str.indexOf('.')>0 || str.indexOf('w')>0 || str.indexOf('k')>0
+  },
+}

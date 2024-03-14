@@ -1,0 +1,22 @@
+<!--components/CityPicker/index.wxml-->
+<view class="city-picker {{type}}">
+  <picker class="item" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      <block wx:if="{{type == 'small'}}">
+        城市 <text class="city">{{sug || multiArray[1][multiIndex[1]]}}</text>
+        <image class="arrow-mini" src='../../assets/img/icon-down-arraw.png' mode="aspectFit" />
+      </block>
+      <block wx:else>
+        <view class="label">
+          城市
+        </view>
+        <view class="text">
+          {{sug || multiArray[1][multiIndex[1]]}}
+          <image class="arrow" src='http://renovationm-pic.oss-cn-beijing.aliyuncs.com/upload/09176494f7935981297e6d24c437b3b8' mode="aspectFit" />
+        </view>
+      </block>
+      <!-- 城市 {{multiArray[1][multiIndex[1]]}} -->
+      <!-- {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}} -->
+    </view>
+  </picker>
+</view>

@@ -1,0 +1,45 @@
+/* components/EntryFour/index.wxss */
+.entry-four-container{
+  width: 98vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30rpx;
+    position: relative;
+  
+    .animation-tag{
+      background-color: rgb(233,76,87);
+      font-size: 16rpx;
+      color: #fff;
+      position: absolute;
+      right: -30rpx;
+      top: 13rpx;
+      height: 30rpx;
+      padding: 0 10rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15rpx;
+    }
+    .image{
+      width: 90rpx;
+      height: 90rpx;
+      position: relative;
+      display: block;
+    }
+    .text{
+      font-size: 24rpx;
+      text-align: center;
+      display: block;
+      font-family: 'PingFangSC-Medium';
+      color: #000;
+      margin: 18rpx 0 0 0;
+    }
+  }
+}
