@@ -1,0 +1,31 @@
+<!--pages/handleOperation/index.wxml-->
+<view>
+  <view class="tips">
+    操作提示：
+    <view>
+      1. <text class="red">修改</text>直接点击下方表格行即可
+    </view>
+    <view>
+      2. 如果是增删已在系统的鱼，直接新增对应数量库存即可(没必要去下边找到对应数据)
+    </view>
+    <view>
+      3. 特定鱼记得卖完删除
+    </view>
+  </view>
+  <button class="add" type="primary" bind:tap="showDialog" >新增</button>
+  <view class="table">
+    <view class="th">
+      <view class="td width_title">名称</view>
+      <view class="td big else">尺寸</view>
+      <view class="td else">价格</view>
+      <view class="td else">库存</view>
+    </view>
+    <view wx:for="{{list}}" wx:key="index" wx:for-item="item" class="tr" bind:tap="showDialog" data-item="{{item}}">
+      <view class="td width_title">{{item.name || item.fish_name}} </view>
+      <view class="td big else"> {{item.current_size}}</view>
+      <view class="td else"> {{item.price}}</view>
+      <view class="td else"> {{item.num}}</view>
+    </view>
+  </view>
+  <InputDialog show="{{showModal}}" data="{{current}}" bind:close="closeDialog" />
+</view>

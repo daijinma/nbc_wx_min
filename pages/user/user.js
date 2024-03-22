@@ -33,6 +33,11 @@ Page({
       title: "订单开发中",
     })
   },
+  handleFish(){
+    wx.navigateTo({
+      url: '../handleOperation/index'
+    })
+  },
   changeMock() {
     const {
       user: {

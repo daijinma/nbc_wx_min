@@ -14,7 +14,7 @@ Page({
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
-      url: '../list/list'
+      url: '../list2/index'
     })
   },
   onLoad() {
@@ -25,7 +25,7 @@ Page({
       })
     }
     wx.redirectTo({
-      url: '../list/list'
+      url: '../list2/index'
     })
 
   },

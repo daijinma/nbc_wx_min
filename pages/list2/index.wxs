@@ -1,0 +1,3 @@
+module.exports.add = function(a=0, b=0){
+  return Number(a) +  Number(b)
+}

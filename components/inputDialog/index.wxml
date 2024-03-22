@@ -1,0 +1,55 @@
+<!--components/inputDialog/index.wxml-->
+<view class="modal" wx:if="{{show}}">
+  <view class="bg" bind:tap="close"></view>
+  <view class="content">
+
+    <view class="form-input">
+      <view class="label">鱼名</view>
+      <input class="input" placeholder="请输入" value="{{form.name}}" bindinput="onInputName" />
+    </view>
+    <view class="result" wx:if="{{form.name  && !sugFish}}">
+      <radio-group bindchange="radioChange">
+        <label class="item item-cell">
+          <radio value="" />自定义即可
+        </label>
+        <block wx:for="{{sug}}" wx:key="index">
+          <label class="item item-cell">
+            <radio value="{{item.id}}" />
+            {{item.name}}
+          </label>
+        </block>
+      </radio-group>
+    </view>
+    <view wx:if="{{ sugFish && !sugFish.id }}">
+      <view class="form-input">
+        <view class="label">尺寸</view>
+        <input class="input" placeholder="请输入" bindinput="onInputSize" />
+      </view>
+      <view class="form-input">
+        <view class="label">价格</view>
+        <input class="input" placeholder="请输入" bindinput="onInputPrice" />
+      </view>
+      <view class="form-input">
+        <view class="label">数量</view>
+        <input class="input" placeholder="请输入" bindinput="onInputNum" />
+      </view>
+    </view>
+    <view wx:if="{{ sugFish && sugFish.id }}">
+      <view class="form-input">
+        <view class="label">尺寸</view>
+        <picker class="input" mode="selector" range="{{sugFish.size}}" bindchange="onInputSize">
+          {{form.size || '请选择尺寸' }}
+        </picker>
+      </view>
+      <view class="form-input">
+        <view class="label">价格</view>
+        <input value="{{form.price}}" class="input" placeholder="请输入" bindinput="onInputPrice" />
+      </view>
+      <view class="form-input">
+        <view class="label">数量</view>
+        <input value="{{form.num}}" class="input" placeholder="请输入" bindinput="onInputNum" />
+      </view>
+    </view>
+    <button class="add" type="primary" bind:tap="submit">保存</button>
+  </view>
+</view>

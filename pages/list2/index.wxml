@@ -1,4 +1,4 @@
-<wxs src="./list.wxs" module="utils"></wxs>
+<wxs src="./index.wxs" module="utils"></wxs>
 
 <view class="main-container">
   <!-- 管理员头像 -->
@@ -26,24 +26,28 @@
       <view class="th">
         <!-- 商品类别 -->
         <view class="td width_title">名称</view>
-        <view class="td else">尺寸/品相</view>
-        <view class="td else">产地</view>
+        <view class="td big else">尺寸</view>
+        <!-- <view class="td else">产地</view> -->
         <view class="td else">价格</view>
-        <view class="td else staff_show">库存</view>
+        <view class="td else">库存</view>
+        <!-- <view class="td else staff_show">库存</view> -->
       </view>
       <view class="tr" wx:for="{{item1.list}}" wx:key="index" wx:for-item="item" data-item="{{item}}" catchtap="showDetailPannel">
         <!-- 商品类别 -->
-        <view class="td width_title">{{item.fish_name}}</view>
+        <view class="td width_title">{{item.name || item.fish_name}}</view>
         <view class="td else">
           <view class="{{detail.discount?'tr2 discount':'tr2'}}" wx:for="{{item.detail}}" wx:key="idx" wx:for-index="idx" wx:for-item="detail" data-item="{{item}}" data-index="{{idx}}" catchtap="showDetailPannel">
             <!-- 商品类别 -->
-            <view class="td2 else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}</view>
-            <view class="td2">{{detail.supplier || '--'}}</view>
+            <view class="td2 big else">{{detail.current_size?detail.current_size:""}} {{detail.current_appearance?detail.current_appearance:""}}
+              <!-- <text v-if="detail.supplier">({{detail.supplier}})</text> -->
+            </view>
+            <!-- <view class="td2">{{detail.supplier || '--'}}</view> -->
             <view class="td2">
               <text>{{detail.price}}</text>
               <text class="old_price" wx:if="{{detail.discount}}">/{{detail.price-detail.price_increase}}</text>
             </view>
-            <view class="td2 staff_show">{{detail.num}}</view>
+            <view class="td2">{{detail.num}}</view>
+            <!-- <view class="td2 staff_show">{{detail.num}}</view> -->
           </view>
         </view>
       </view>

@@ -3,6 +3,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "handleOperation",
+          "pathName": "pages/handleOperation/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "鱼列表",
           "pathName": "pages/products/products",
           "query": "",

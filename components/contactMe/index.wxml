@@ -1,0 +1,16 @@
+<!--components/contactMe/index.wxml-->
+<view class="contact" bindtap="openModal" >
+    <view>
+      <image src="../../assets/qrcode.jpeg" mode="aspectFill"></image>
+      <text class="tips">点击加我</text>
+    </view>
+</view>
+
+<!-- 
+<view class="modal-wrapper" wx:if="{{showModal}}">
+  <view class="mask" bindtap="closeModal"></view>
+  <view class="modal">
+    <image src="../../assets/qrcode.jpeg" mode="aspectFit" class="main-image"></image>
+    <text class="description">长按二维码加我，哥</text>
+  </view>
+</view> -->

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "登记-个人中心",
+  "usingComponents": {
+    "InputDialog": "../../components/inputDialog"
+  }
+}

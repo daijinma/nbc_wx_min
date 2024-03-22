@@ -55,7 +55,7 @@ Page({
       .then(res => {
         this.setData({
           user: {
-            is_staff: false,//!!res?.nbcInfo?.mobile,
+            is_staff: !!res?.nbcInfo?.mobile,
             ...res?.nbcInfo
           },
         })
@@ -136,13 +136,15 @@ Page({
       title: '正在努力加载中',
     })
     return wx.request({
-      url: mainUrl + '/products/v2/all',
+      // url: mainUrl + '/handle/all',
+      url: 'http://localhost:13026/api/min/handle/all',
       method: 'GET',
       success: ({
         data
       }) => {
         wx.hideLoading();
 
+        // 关闭 整体提价 10%
         // if (!this.data.user.is_staff || this.data.mockValue) {
         //   data.list.forEach((item) => {
         //     item.price = Math.round(parseInt(item.price * 1.1) / 5) * 5;
@@ -168,11 +170,12 @@ Page({
           item._id = id;
           const {
             fish_id,
+            name,
             fish_name,
             category,
             fish_image_url,
             current_size,
-            current_appearance
+            current_appearance=''
           } = item;
           const __id = `${category}_${fish_id}`
           const index = list_id.indexOf(__id)
@@ -184,7 +187,7 @@ Page({
             list_id.push(__id)
             list.push({
               fish_id,
-              fish_name,
+              fish_name: name? name : fish_name,
               category,
               fish_image_url,
               size: [current_size],
@@ -222,7 +225,6 @@ Page({
             })
           }
         })
-
 
         this.setData({
           renderList: [{

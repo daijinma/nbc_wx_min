@@ -9,14 +9,18 @@
     </view>
   </view>
   <view class="user-config card">
-    <view class="label" catchtap="changeMock">
+    <!-- <view class="label" catchtap="changeMock">
       <label class="label-text" for="showMock"><text>显示假价</text> <text class="tips">(修改本地显示价格,点击操作)，现在是-></text></label>
       <view class="right-item red">
         {{config.mockValue?'开启':'关闭'}}
       </view>
-    </view>
-    <view class="label" catchtap="orders">
+    </view> -->
+    <!-- <view class="label" catchtap="orders">
       <label class="label-text" ><text>我的订单</text> <text class="tips">(查询/新增/删除订单)</text></label>
+      <view class="right-item">></view>
+    </view> -->
+    <view class="label" catchtap="handleFish">
+      <label class="label-text" ><text>录入鱼信息</text> <text class="tips">(新增/删除鱼信息)</text></label>
       <view class="right-item">></view>
     </view>
 
