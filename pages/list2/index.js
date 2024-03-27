@@ -2,8 +2,8 @@
 // https://github.com/vanclimber/MiniProgram-diancan/blob/master/app.wxss
 // https://github.com/vanclimber/MiniProgram-diancan
 
-// const mainUrl = 'http://localhost:3000/api/min'
-const mainUrl = 'https://nbc.daijinma.cn/api/min'
+const mainUrl = 'http://localhost:13026/api/min'
+// const mainUrl = 'https://nbc.daijinma.cn/api/min'
 const app = getApp()
 
 Page({
@@ -32,6 +32,7 @@ Page({
       is_staff: false,
       avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
     },
+    new_time: '',
   },
 
   /**
@@ -136,8 +137,8 @@ Page({
       title: '正在努力加载中',
     })
     return wx.request({
-      // url: mainUrl + '/handle/all',
-      url: 'http://localhost:13026/api/min/handle/all',
+      url: mainUrl + '/handle/all',
+      // url: 'http://localhost:13026/api/min/handle/all',
       method: 'GET',
       success: ({
         data
@@ -150,6 +151,14 @@ Page({
         //     item.price = Math.round(parseInt(item.price * 1.1) / 5) * 5;
         //   })
         // }
+
+        if(data.list[0]){
+          const new_time = data.list[0].update_time
+
+          this.setData({
+            new_time: new Date(new_time).toLocaleString()
+          })
+        }
 
         const list = [];
         const list_id = [];

@@ -11,7 +11,12 @@
   </view>
   <ContactMe wx:else />
   <view class="bg-linear-gradient"></view>
-  <view class="desc">{{desc}}</view>
+  <view class="desc">
+  {{desc}}
+  <view class="desc-time">
+    更新时间：{{ new_time }}
+  </view>
+  </view>
   <!-- 右侧商品 -->
 
 
