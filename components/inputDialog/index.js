@@ -1,6 +1,6 @@
 // components/inputDialog/index.js
-const mainUrl = 'http://localhost:13026/api/min'
-// const mainUrl = 'https://nbc.daijinma.cn/api/min'
+// const mainUrl = 'http://localhost:13026/api/min'
+const mainUrl = 'https://nbc.daijinma.cn/api/min'
 
 Component({
   /**
