@@ -1,4 +1,6 @@
 // pages/handleOperation/index.js
+const mainUrl = 'https://nbc.daijinma.cn/api/min'
+
 Page({
 
   /**
@@ -38,7 +40,7 @@ Page({
   },
   showDialog(event){
     
-    const item = event.target.dataset.item || {}
+    const item = event.currentTarget.dataset.item || {}
     this.setData({
       showModal: true,
       current: item
@@ -49,8 +51,7 @@ Page({
       title: '正在努力加载中',
     })
     return wx.request({
-      // url: mainUrl + '/handle/all',
-      url: 'http://localhost:13026/api/min/handle/all',
+      url: mainUrl + '/handle/all',
       method: 'GET',
       success: ({
         data

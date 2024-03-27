@@ -27,5 +27,5 @@
       <view class="td else"> {{item.num}}</view>
     </view>
   </view>
-  <InputDialog show="{{showModal}}" data="{{current}}" bind:close="closeDialog" />
+  <InputDialog show="{{showModal}}" data="{{current}}" bind:close="closeDialog" bind:refesh="loadDate" />
 </view>

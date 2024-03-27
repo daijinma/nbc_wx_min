@@ -9,7 +9,7 @@
     </view>
     <view class="result" wx:if="{{form.name  && !sugFish}}">
       <radio-group bindchange="radioChange">
-        <label class="item item-cell">
+        <label wx:if="{{sug.length===0}}"  class="item item-cell">
           <radio value="" />自定义即可
         </label>
         <block wx:for="{{sug}}" wx:key="index">
@@ -18,20 +18,22 @@
             {{item.name}}
           </label>
         </block>
+        
       </radio-group>
     </view>
     <view wx:if="{{ sugFish && !sugFish.id }}">
       <view class="form-input">
         <view class="label">尺寸</view>
-        <input class="input" placeholder="请输入" bindinput="onInputSize" />
+        <input class="input" placeholder="请输入" value="{{form.size}}" bindinput="onInputSize2" />
       </view>
+      {{}}
       <view class="form-input">
         <view class="label">价格</view>
-        <input class="input" placeholder="请输入" bindinput="onInputPrice" />
+        <input class="input" placeholder="请输入" value="{{form.price}}"bindinput="onInputPrice" />
       </view>
       <view class="form-input">
         <view class="label">数量</view>
-        <input class="input" placeholder="请输入" bindinput="onInputNum" />
+        <input class="input" value="{{form.quantity}}" placeholder="请输入" bindinput="onInputNum" />
       </view>
     </view>
     <view wx:if="{{ sugFish && sugFish.id }}">
@@ -47,7 +49,7 @@
       </view>
       <view class="form-input">
         <view class="label">数量</view>
-        <input value="{{form.num}}" class="input" placeholder="请输入" bindinput="onInputNum" />
+        <input value="{{form.quantity}}" class="input" placeholder="请输入" bindinput="onInputNum" />
       </view>
     </view>
     <button class="add" type="primary" bind:tap="submit">保存</button>
