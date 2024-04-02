@@ -15,9 +15,9 @@ Component({
   },
   lifetimes:{
     attached(){
-      // setTimeout(()=>{
-      //     this.openModal()
-      // }, 8000)
+      setTimeout(()=>{
+          this.openModal()
+      }, 8000)
     }
   },
   /**
@@ -34,8 +34,8 @@ Component({
       // });
 
       wx.previewImage({
-        current: "https://nbc-static.oss-cn-beijing.aliyuncs.com/qrcode.jpeg", // 当前显示图片的http链接
-        urls: ['https://nbc-static.oss-cn-beijing.aliyuncs.com/qrcode.jpeg']
+        current: "https://nbc-static.oss-cn-beijing.aliyuncs.com/nbc_banner.jpeg", // 当前显示图片的http链接
+        urls: ['https://nbc-static.oss-cn-beijing.aliyuncs.com/nbc_banner.jpeg']
       })
   
     },
