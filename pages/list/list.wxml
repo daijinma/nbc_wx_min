@@ -11,9 +11,12 @@
   </view>
   <ContactMe wx:else />
   <view class="bg-linear-gradient"></view>
-  <view class="desc">{{desc}}</view>
+  <view class="bg-linear-gradient2"></view>
   <!-- 右侧商品 -->
-
+  <image class="banner" mode="aspectFill" bind:tap="openModal" src="https://nbc-static.oss-cn-beijing.aliyuncs.com/banner1.png" />
+  <view class="desc">
+    说明：发货地为<text>河北沧州</text>，走顺丰生鲜，京津冀地区可以陆运第二天早晨到达，其他地区走航空
+  </view>
 
   <view class="{{user.is_staff?'staff_table table':'table'}}">
     <view class="tabs">

@@ -16,7 +16,10 @@ Component({
   lifetimes:{
     attached(){
       setTimeout(()=>{
+        var value = wx.getStorageSync('qrcode_show')
+        if(value != "1") {
           this.openModal()
+        }
       }, 8000)
     }
   },
@@ -26,12 +29,10 @@ Component({
   methods: {
     // 弹框打开事件处理函数
     openModal: function() {
-      // 设置弹框相关数据
-      // this.setData({
-      //   showModal: true,
-      //   imageUrl: 'https://example.com/main-image.png',
-      //   description: '这是一些文案说明',
-      // });
+      wx.setStorage({
+        key: "qrcode_show",
+        data: "1",
+      })
 
       wx.previewImage({
         current: "https://nbc-static.oss-cn-beijing.aliyuncs.com/nbc_banner.jpeg", // 当前显示图片的http链接

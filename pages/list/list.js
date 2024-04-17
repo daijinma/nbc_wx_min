@@ -39,7 +39,7 @@ Page({
    */
   onLoad: function (options) {
     this.getFish()
-    this.getDesc()
+    // this.getDesc()
 
 
     // rpx和px进行转换
@@ -55,7 +55,7 @@ Page({
       .then(res => {
         this.setData({
           user: {
-            is_staff: false,//!!res?.nbcInfo?.mobile,
+            is_staff: !!res?.nbcInfo?.mobile,
             ...res?.nbcInfo
           },
         })
@@ -73,6 +73,17 @@ Page({
         is_staff: false
       }
     })
+  },
+  openModal: function() {
+    wx.setStorage({
+      key: "qrcode_show",
+      data: "1",
+    })
+    wx.previewImage({
+      current: "https://nbc-static.oss-cn-beijing.aliyuncs.com/nbc_banner.jpeg", // 当前显示图片的http链接
+      urls: ['https://nbc-static.oss-cn-beijing.aliyuncs.com/nbc_banner.jpeg']
+    })
+
   },
   getMockPrice() {
 
